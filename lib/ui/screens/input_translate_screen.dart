@@ -678,6 +678,18 @@ class _InputTranslateScreenState extends State<InputTranslateScreen>
                         const StepIndicator(currentStep: 2),
                         SizedBox(height: Responsive.space(context, 12)),
                         LanguagePairBar(source: source, target: target),
+                        if (source.isExperimental || target.isExperimental) ...[
+                          SizedBox(height: Responsive.space(context, 8)),
+                          Text(
+                            'Ini translation is experimental. '
+                            'Results may be inaccurate.',
+                            style: TextStyle(
+                              color: AppColors.clay,
+                              fontSize: Responsive.sp(context, 14),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
                         SizedBox(height: Responsive.space(context, 16)),
                         _buildMessageCard(
                           context,

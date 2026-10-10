@@ -33,6 +33,7 @@ const List<Language> languages = [
     borderColor: AppColors.chambray,
     ttsLocale: 'fil-PH',
     ttsApproximate: true,
+    isExperimental: true,
   ),
   Language(
     id: 'onh',
@@ -43,6 +44,7 @@ const List<Language> languages = [
     textColor: AppColors.onClay,
     ttsLocale: 'fil-PH',
     ttsApproximate: true,
+    isExperimental: true,
   ),
   Language(
     id: 'asi',
@@ -53,5 +55,7 @@ const List<Language> languages = [
     textColor: AppColors.bisque,
     ttsLocale: 'fil-PH',
     ttsApproximate: true,
+    isExperimental: true,
+    
   ),
 ];

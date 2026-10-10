@@ -13,6 +13,7 @@ class Language {
     this.sttLocale,
     this.ttsLocale,
     this.ttsApproximate = false,
+    this.isExperimental = false,
   });
 
   final String id;
@@ -25,4 +26,7 @@ class Language {
   final String? sttLocale;
   final String? ttsLocale;
   final bool ttsApproximate;
+
+  /// True when translation quality for this language is still being tested.
+  final bool isExperimental;
 }
