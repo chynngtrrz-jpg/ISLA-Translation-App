@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "getStarted": "Get Started",
   "@getStarted": {
     "description": "Screen: Landing"

@@ -2,8 +2,10 @@
 *.class
 *.log
 *.pyc
+__pycache__/
 *.swp
 .DS_Store
+Thumbs.db
 .atom/
 .build/
 .buildlog/
@@ -17,6 +19,39 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
+
+# Python environments and notebooks
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# Secrets
+.env
+.env.*
+*.key
+credentials*.json
+*token*
+*.pem
+
+# Model artifacts and training outputs
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+*.ckpt
+checkpoints/
+isla-nllb-en-tl/
+translation_sheet.csv
+.cache/
+runs/
+wandb/
+logs/
+
+# VS Code (keep shared settings only)
+.vscode/*
+!.vscode/settings.json
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
