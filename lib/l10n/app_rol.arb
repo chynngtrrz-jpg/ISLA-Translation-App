@@ -1,0 +1,334 @@
+{
+  "@@locale": "rol",
+  "getStarted": "Get Started",
+  "@getStarted": {
+    "description": "Screen: Landing"
+  },
+  "languageSelectionTitle": "Pumili ng linggwahe",
+  "@languageSelectionTitle": {
+    "description": "Screen: Language Selection"
+  },
+  "languageSelectionDescription": "Pumili linggwahe kung diin ka sanay.",
+  "@languageSelectionDescription": {
+    "description": "Screen: Language Selection"
+  },
+  "languageSelectionChangeNote": "Pwede mo palitan ang linggwahe kung san'o mo gusto.",
+  "@languageSelectionChangeNote": {
+    "description": "Screen: Language Selection"
+  },
+  "selectLanguage": "Pilia",
+  "@selectLanguage": {
+    "description": "Screen: Language Selection"
+  },
+  "appSubtitle": "Language Translation",
+  "@appSubtitle": {
+    "description": "Shared: App Bar"
+  },
+  "welcomeTitle": "Welcome to ISLA!",
+  "@welcomeTitle": {
+    "description": "Shared: Welcome Banner"
+  },
+  "selectLanguagesBanner": "Pagpili mga linggwahe, tapos pinduta ang \"Masunod\" para ma-type and imo mensahe.",
+  "@selectLanguagesBanner": {
+    "description": "Screen: Select Languages"
+  },
+  "inputTextBanner": "I-type ang imo mensahe, tapos pinduta ang \"Isaylo\".",
+  "@inputTextBanner": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputVoiceBanner": "Pinduta ang mikropono kag maghambay, tapos pinduta ang \"Isaylo\".",
+  "@inputVoiceBanner": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputCameraBanner": "I-tutok and camera, tapos pinduta ang \"Picture\".",
+  "@inputCameraBanner": {
+    "description": "Screen: Input and Translate"
+  },
+  "stepChooseLanguages": "Pagpili mga Linggwahe",
+  "@stepChooseLanguages": {
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "stepInputTranslate": "Butanga kag Isaylo",
+  "@stepInputTranslate": {
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "stepViewResult": "Tan-awa ang Resulta",
+  "@stepViewResult": {
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "stepSemanticsCompleted": "Step {n} of {total}, {label}, completed",
+  "@stepSemanticsCompleted": {
+    "placeholders": {
+      "n": {},
+      "total": {},
+      "label": {}
+    },
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "stepSemanticsCurrent": "Step {n} of {total}, {label}, current",
+  "@stepSemanticsCurrent": {
+    "placeholders": {
+      "n": {},
+      "total": {},
+      "label": {}
+    },
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "stepSemanticsUpcoming": "Step {n} of {total}, {label}",
+  "@stepSemanticsUpcoming": {
+    "placeholders": {
+      "n": {},
+      "total": {},
+      "label": {}
+    },
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "selectLanguagesTitle": "Pagpili mga Linggwahe",
+  "@selectLanguagesTitle": {
+    "description": "Screen: Select Languages"
+  },
+  "sourceLanguage": "Ginghalinan nga Linggwahe",
+  "@sourceLanguage": {
+    "description": "Screen: Select Languages"
+  },
+  "targetLanguage": "Punterya nga Linggwahe",
+  "@targetLanguage": {
+    "description": "Screen: Select Languages"
+  },
+  "sourceLanguageHeading": "Ginghalinan nga Linggwahe",
+  "@sourceLanguageHeading": {
+    "description": "Screen: Select Languages"
+  },
+  "targetLanguageHeading": "Punterya nga Linggwahe",
+  "@targetLanguageHeading": {
+    "description": "Screen: Select Languages"
+  },
+  "unsupportedDirection": "This direction is not available.",
+  "@unsupportedDirection": {
+    "description": "Screen: Select Languages"
+  },
+  "next": "Masunod",
+  "@next": {
+    "description": "Screen: Select Languages"
+  },
+  "nextDisabled": "Next, disabled",
+  "@nextDisabled": {
+    "description": "Screen: Select Languages"
+  },
+  "languageDialog": "Pagpili Linggwahe",
+  "@languageDialog": {
+    "description": "Screen: Select Languages"
+  },
+  "alreadySelected": "Napili na",
+  "@alreadySelected": {
+    "description": "Screen: Select Languages"
+  },
+  "notAvailable": "Not available",
+  "@notAvailable": {
+    "description": "Screen: Select Languages"
+  },
+  "languageFieldSemantics": "{fieldName}, {value}. Double tap to change.",
+  "@languageFieldSemantics": {
+    "placeholders": {
+      "fieldName": {},
+      "value": {}
+    },
+    "description": "Screen: Select Languages"
+  },
+  "translationDirection": "{source} to {target}",
+  "@translationDirection": {
+    "placeholders": {
+      "source": {},
+      "target": {}
+    },
+    "description": "Screen: Select Languages"
+  },
+  "swapLanguages": "Ipagpalit ang ginghalinan kag punterya nga linggwahe",
+  "@swapLanguages": {
+    "description": "Screen: Select Languages"
+  },
+  "backToLanguageSelection": "Balik sa pagpili mga linggwahe",
+  "@backToLanguageSelection": {
+    "description": "Screen: Select Languages"
+  },
+  "backToLanguagePairSelection": "Balik sa pagpili ng mga linggwahe",
+  "@backToLanguagePairSelection": {
+    "description": "Screen: Select Languages"
+  },
+  "backToInputTranslation": "Balik sa pagbutang kag pagsaylo",
+  "@backToInputTranslation": {
+    "description": "Screen: Result"
+  },
+  "inputChange": "Bayluhi",
+  "@inputChange": {
+    "description": "Screen: Select Languages"
+  },
+  "inputTitle": "Imo Mensahe",
+  "@inputTitle": {
+    "description": "Screen: Input and Translate"
+  },
+  "modeText": "Text",
+  "@modeText": {
+    "description": "Screen: Input and Translate"
+  },
+  "modeVoice": "Voice",
+  "@modeVoice": {
+    "description": "Screen: Input and Translate"
+  },
+  "modeCamera": "Camera",
+  "@modeCamera": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputLabelText": "PAGBUTANG MENSAHE",
+  "@inputLabelText": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputLabelTranscript": "TRANSCRIPT",
+  "@inputLabelTranscript": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputLabelRecognized": "RECOGNIZED TEXT",
+  "@inputLabelRecognized": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputHint": "Diri butanga ang imo mensahe.",
+  "@inputHint": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputCounter": "{count} / {max}",
+  "@inputCounter": {
+    "placeholders": {
+      "count": {},
+      "max": {}
+    },
+    "description": "Screen: Input and Translate"
+  },
+  "inputTranslate": "Isaylo",
+  "@inputTranslate": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputTranslating": "Nagsasalin...",
+  "@inputTranslating": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputClear": "Payaa kag Magliwat",
+  "@inputClear": {
+    "description": "Screens: Select Languages and Input and Translate"
+  },
+  "statusModelLoading": "Model loading",
+  "@statusModelLoading": {
+    "description": "Screen: Input and Translate"
+  },
+  "commonError": "Something went wrong. Try again.",
+  "@commonError": {
+    "description": "Screen: Input and Translate"
+  },
+  "voiceIdle": "Pinduta kag maghambay",
+  "@voiceIdle": {
+    "description": "Screen: Input and Translate"
+  },
+  "voiceListening": "Gapamati...",
+  "@voiceListening": {
+    "description": "Screen: Input and Translate"
+  },
+  "voiceProcessing": "Processing...",
+  "@voiceProcessing": {
+    "description": "Screen: Input and Translate"
+  },
+  "voiceUnavailable": "Voice input is not available for {language}.",
+  "@voiceUnavailable": {
+    "placeholders": {
+      "language": {}
+    },
+    "description": "Screen: Input and Translate"
+  },
+  "voicePermissionDenied": "Microphone permission is required.",
+  "@voicePermissionDenied": {
+    "description": "Screen: Input and Translate"
+  },
+  "voicePermissionPermanentlyDenied": "Microphone access is blocked. Enable it in app settings.",
+  "@voicePermissionPermanentlyDenied": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraCapture": "Capture",
+  "cameraLiveHint": "Itutok sa mensahe kag pinduta ang \"Picture\".",
+  "cameraSelectHint": "Pinduta ang mga kahon para mapili ang mensahe nga imo isaylo.",
+  "cameraReading": "Ginabasa ang mensahe...",
+  "cameraRetake": "Liwat",
+  "cameraSelectAll": "Pilia tanan",
+  "cameraClearSelection": "Payaa tanan",
+  "@cameraCapture": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraGallery": "Upload from gallery",
+  "@cameraGallery": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraPermissionDenied": "Camera permission is required.",
+  "@cameraPermissionDenied": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraPermissionPermanentlyDenied": "Camera access is blocked. Enable it in app settings.",
+  "@cameraPermissionPermanentlyDenied": {
+    "description": "Screen: Input and Translate"
+  },
+  "permissionOpenSettings": "Open Settings",
+  "@permissionOpenSettings": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraNoText": "No text detected. Retake or choose another image.",
+  "@cameraNoText": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraOcrUnavailable": "Text recognition is available in the Android app only.",
+  "@cameraOcrUnavailable": {
+    "description": "Screen: Input and Translate"
+  },
+  "resultTitle": "Resulta ng Pagsaylo",
+  "@resultTitle": {
+    "description": "Screen: Result"
+  },
+  "resultDescription": "Basaha ang resulta sa idayom.",
+  "@resultDescription": {
+    "description": "Screen: Result"
+  },
+  "resultLabel": "Resulta ng Pagsaylo",
+  "@resultLabel": {
+    "description": "Screen: Result"
+  },
+  "resultSpeak": "Pamati",
+  "@resultSpeak": {
+    "description": "Screen: Result"
+  },
+  "resultSpeakApprox": "Pamati",
+  "@resultSpeakApprox": {
+    "description": "Screen: Result"
+  },
+  "resultSpeakUnavailable": "No voice available for this language.",
+  "@resultSpeakUnavailable": {
+    "description": "Screen: Result"
+  },
+  "originalTextLabel": "ORIGINAL · {language}",
+  "@originalTextLabel": {
+    "placeholders": {
+      "language": {}
+    },
+    "description": "Screen: Result"
+  },
+  "noTranslationYet": "No translation yet",
+  "@noTranslationYet": {
+    "description": "Screen: Result"
+  },
+  "backToInput": "Balik sa Pagbutang",
+  "@backToInput": {
+    "description": "Screen: Result"
+  },
+  "translateAnother": "Pagsaylo liwat",
+  "@translateAnother": {
+    "description": "Screen: Result"
+  },
+  "startOver": "Magtuna Liwat",
+  "@startOver": {
+    "description": "Screen: Result"
+  }
+}

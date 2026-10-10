@@ -1,0 +1,352 @@
+{
+  "@@locale": "bno",
+  "getStarted": "Get Started",
+  "@getStarted": {
+    "description": "Screen: Landing"
+  },
+  "languageSelectionTitle": "Gi pili it Linggwahe",
+  "@languageSelectionTitle": {
+    "description": "Screen: Language Selection"
+  },
+  "languageSelectionDescription": "Choose the language you are most comfortable with.",
+  "@languageSelectionDescription": {
+    "description": "Screen: Language Selection"
+  },
+  "languageSelectionChangeNote": "You can change the language at any time during your session.",
+  "@languageSelectionChangeNote": {
+    "description": "Screen: Language Selection"
+  },
+  "selectLanguage": "Pili",
+  "@selectLanguage": {
+    "description": "Screen: Language Selection"
+  },
+  "appSubtitle": "Language Translation",
+  "@appSubtitle": {
+    "description": "Shared: App Bar"
+  },
+  "welcomeTitle": "Welcome to ISLA",
+  "@welcomeTitle": {
+    "description": "Shared: Welcome Banner"
+  },
+  "selectLanguagesBanner": "Pili it imo linggwahe, ag pinduton kag \"Sunor\" para mag suyat it imo mensahe.",
+  "@selectLanguagesBanner": {
+    "description": "Screen: Select Languages"
+  },
+  "inputTextBanner": "Type your message, then tap Translate.",
+  "@inputTextBanner": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputVoiceBanner": "Tap the microphone and speak, then tap Translate.",
+  "@inputVoiceBanner": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputCameraBanner": "Point the camera at text, then tap Capture.",
+  "@inputCameraBanner": {
+    "description": "Screen: Input and Translate"
+  },
+  "stepChooseLanguages": "Gi pili it Linggwahe",
+  "@stepChooseLanguages": {
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "stepInputTranslate": "Butang ag Translate",
+  "@stepInputTranslate": {
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "stepViewResult": "Muyatan kag resulta",
+  "@stepViewResult": {
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "stepSemanticsCompleted": "Step {n} of {total}, {label}, completed",
+  "@stepSemanticsCompleted": {
+    "placeholders": {
+      "n": {},
+      "total": {},
+      "label": {}
+    },
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "stepSemanticsCurrent": "Step {n} of {total}, {label}, current",
+  "@stepSemanticsCurrent": {
+    "placeholders": {
+      "n": {},
+      "total": {},
+      "label": {}
+    },
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "stepSemanticsUpcoming": "Step {n} of {total}, {label}",
+  "@stepSemanticsUpcoming": {
+    "placeholders": {
+      "n": {},
+      "total": {},
+      "label": {}
+    },
+    "description": "Screens: Select Languages, Input and Translate, and Result (Stepper)"
+  },
+  "selectLanguagesTitle": "Gi pili it Linggwahe",
+  "@selectLanguagesTitle": {
+    "description": "Screen: Select Languages"
+  },
+  "sourceLanguage": "Ginghalinan na Linggwahe",
+  "@sourceLanguage": {
+    "description": "Screen: Select Languages"
+  },
+  "targetLanguage": "Punterya nga Linggwahe",
+  "@targetLanguage": {
+    "description": "Screen: Select Languages"
+  },
+  "sourceLanguageHeading": "GINGHALINAN NA LINGGWAHE",
+  "@sourceLanguageHeading": {
+    "description": "Screen: Select Languages"
+  },
+  "targetLanguageHeading": "PUNTERYA NGA LINGGWAHE",
+  "@targetLanguageHeading": {
+    "description": "Screen: Select Languages"
+  },
+  "unsupportedDirection": "This direction is not available.",
+  "@unsupportedDirection": {
+    "description": "Screen: Select Languages"
+  },
+  "next": "Sunor",
+  "@next": {
+    "description": "Screen: Select Languages"
+  },
+  "nextDisabled": "Next, disabled",
+  "@nextDisabled": {
+    "description": "Screen: Select Languages"
+  },
+  "languageDialog": "Gi pili it Linggwahe",
+  "@languageDialog": {
+    "description": "Screen: Select Languages"
+  },
+  "alreadySelected": "Already selected",
+  "@alreadySelected": {
+    "description": "Screen: Select Languages"
+  },
+  "notAvailable": "Not available",
+  "@notAvailable": {
+    "description": "Screen: Select Languages"
+  },
+  "languageFieldSemantics": "{fieldName}, {value}. Double tap to change.",
+  "@languageFieldSemantics": {
+    "placeholders": {
+      "fieldName": {},
+      "value": {}
+    },
+    "description": "Screen: Select Languages"
+  },
+  "translationDirection": "{source} to {target}",
+  "@translationDirection": {
+    "placeholders": {
+      "source": {},
+      "target": {}
+    },
+    "description": "Screen: Select Languages"
+  },
+  "swapLanguages": "Swap source and target languages",
+  "@swapLanguages": {
+    "description": "Screen: Select Languages"
+  },
+  "backToLanguageSelection": "Back to language selection",
+  "@backToLanguageSelection": {
+    "description": "Screen: Select Languages"
+  },
+  "backToLanguagePairSelection": "Back to language pair selection",
+  "@backToLanguagePairSelection": {
+    "description": "Screen: Select Languages"
+  },
+  "backToInputTranslation": "Back to input and translation",
+  "@backToInputTranslation": {
+    "description": "Screen: Result"
+  },
+  "inputChange": "Change",
+  "@inputChange": {
+    "description": "Screen: Select Languages"
+  },
+  "inputTitle": "Imo mensahe",
+  "@inputTitle": {
+    "description": "Screen: Input and Translate"
+  },
+  "modeText": "Text",
+  "@modeText": {
+    "description": "Screen: Input and Translate"
+  },
+  "modeVoice": "Voice",
+  "@modeVoice": {
+    "description": "Screen: Input and Translate"
+  },
+  "modeCamera": "Camera",
+  "@modeCamera": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputLabelText": "ENTER TEXT",
+  "@inputLabelText": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputLabelTranscript": "TRANSCRIPT",
+  "@inputLabelTranscript": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputLabelRecognized": "RECOGNIZED TEXT",
+  "@inputLabelRecognized": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputHint": "Suyatan ka imo mensahe rili.",
+  "@inputHint": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputCounter": "{count} / {max}",
+  "@inputCounter": {
+    "placeholders": {
+      "count": {},
+      "max": {}
+    },
+    "description": "Screen: Input and Translate"
+  },
+  "inputTranslate": "Translate",
+  "@inputTranslate": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputTranslating": "Translating...",
+  "@inputTranslating": {
+    "description": "Screen: Input and Translate"
+  },
+  "inputClear": "Clear & Start Over",
+  "@inputClear": {
+    "description": "Screens: Select Languages and Input and Translate"
+  },
+  "statusModelLoading": "Model loading",
+  "@statusModelLoading": {
+    "description": "Screen: Input and Translate"
+  },
+  "commonError": "Something went wrong. Try again.",
+  "@commonError": {
+    "description": "Screen: Input and Translate"
+  },
+  "voiceIdle": "Tap to speak",
+  "@voiceIdle": {
+    "description": "Screen: Input and Translate"
+  },
+  "voiceListening": "Listening...",
+  "@voiceListening": {
+    "description": "Screen: Input and Translate"
+  },
+  "voiceProcessing": "Processing...",
+  "@voiceProcessing": {
+    "description": "Screen: Input and Translate"
+  },
+  "voiceUnavailable": "Voice input is not available for {language}.",
+  "@voiceUnavailable": {
+    "placeholders": {
+      "language": {}
+    },
+    "description": "Screen: Input and Translate"
+  },
+  "voicePermissionDenied": "Microphone permission is required.",
+  "@voicePermissionDenied": {
+    "description": "Screen: Input and Translate"
+  },
+  "voicePermissionPermanentlyDenied": "Microphone access is blocked. Enable it in app settings.",
+  "@voicePermissionPermanentlyDenied": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraCapture": "Capture",
+  "@cameraCapture": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraLiveHint": "Point at text, then tap Capture.",
+  "@cameraLiveHint": {
+    "description": "Screen: Input and Translate (Camera)"
+  },
+  "cameraSelectHint": "Tap the boxes to choose the text to translate.",
+  "@cameraSelectHint": {
+    "description": "Screen: Input and Translate (Camera)"
+  },
+  "cameraReading": "Reading text...",
+  "@cameraReading": {
+    "description": "Screen: Input and Translate (Camera)"
+  },
+  "cameraRetake": "Retake",
+  "@cameraRetake": {
+    "description": "Screen: Input and Translate (Camera)"
+  },
+  "cameraSelectAll": "Select all",
+  "@cameraSelectAll": {
+    "description": "Screen: Input and Translate (Camera)"
+  },
+  "cameraClearSelection": "Clear selection",
+  "@cameraClearSelection": {
+    "description": "Screen: Input and Translate (Camera)"
+  },
+  "cameraGallery": "Upload from gallery",
+  "@cameraGallery": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraPermissionDenied": "Camera permission is required.",
+  "@cameraPermissionDenied": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraPermissionPermanentlyDenied": "Camera access is blocked. Enable it in app settings.",
+  "@cameraPermissionPermanentlyDenied": {
+    "description": "Screen: Input and Translate"
+  },
+  "permissionOpenSettings": "Open Settings",
+  "@permissionOpenSettings": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraNoText": "No text detected. Retake or choose another image.",
+  "@cameraNoText": {
+    "description": "Screen: Input and Translate"
+  },
+  "cameraOcrUnavailable": "Text recognition is available in the Android app only.",
+  "@cameraOcrUnavailable": {
+    "description": "Screen: Input and Translate"
+  },
+  "resultTitle": "Translation Result",
+  "@resultTitle": {
+    "description": "Screen: Result"
+  },
+  "resultDescription": "Review your translation below.",
+  "@resultDescription": {
+    "description": "Screen: Result"
+  },
+  "resultLabel": "TRANSLATION RESULT",
+  "@resultLabel": {
+    "description": "Screen: Result"
+  },
+  "resultSpeak": "Listen",
+  "@resultSpeak": {
+    "description": "Screen: Result"
+  },
+  "resultSpeakApprox": "Listen (approximate pronunciation)",
+  "@resultSpeakApprox": {
+    "description": "Screen: Result"
+  },
+  "resultSpeakUnavailable": "No voice available for this language.",
+  "@resultSpeakUnavailable": {
+    "description": "Screen: Result"
+  },
+  "originalTextLabel": "ORIGINAL · {language}",
+  "@originalTextLabel": {
+    "placeholders": {
+      "language": {}
+    },
+    "description": "Screen: Result"
+  },
+  "noTranslationYet": "No translation yet",
+  "@noTranslationYet": {
+    "description": "Screen: Result"
+  },
+  "backToInput": "Back to Input",
+  "@backToInput": {
+    "description": "Screen: Result"
+  },
+  "translateAnother": "Translate Another",
+  "@translateAnother": {
+    "description": "Screen: Result"
+  },
+  "startOver": "Start Over",
+  "@startOver": {
+    "description": "Screen: Result"
+  }
+}
