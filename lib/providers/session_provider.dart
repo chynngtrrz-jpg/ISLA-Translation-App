@@ -25,18 +25,15 @@ class SessionProvider extends ChangeNotifier {
   TranslationResult? result;
   bool isTranslating = false;
   String? errorKey;
-  String _entryUiLanguageId = 'en';
-
   bool get isModelReady => _translator.isReady;
   bool get isValid => supportsPair(sourceId, targetId);
 
   bool supportsPair(String source, String target) =>
       source != target && _pairSupport(source, target);
 
-  void initFromUiLanguage(String uiLanguageId) {
-    _entryUiLanguageId = uiLanguageId;
-    sourceId = uiLanguageId;
-    targetId = uiLanguageId == 'ini' ? 'en' : 'ini';
+  void initTranslationFlow() {
+    sourceId = 'en';
+    targetId = 'ini';
     inputText = '';
     _clearResult();
     inputMode = 'text';
@@ -133,7 +130,7 @@ class SessionProvider extends ChangeNotifier {
   }
 
   void reset() {
-    initFromUiLanguage(_entryUiLanguageId);
+    initTranslationFlow();
     inputMode = 'text';
     isTranslating = false;
     errorKey = null;

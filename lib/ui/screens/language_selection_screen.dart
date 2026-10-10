@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../core/constants/languages.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
-import '../../providers/language_provider.dart';
+import '../../providers/locale_provider.dart';
 import '../widgets/isla_app_bar.dart';
 import '../widgets/language_card.dart';
 
@@ -14,10 +15,19 @@ class LanguageSelectionScreen extends StatelessWidget {
 
   Future<void> _selectLanguage(
     BuildContext context,
-    LanguageProvider provider,
     String languageId,
   ) async {
-    await provider.selectLanguage(languageId);
+    if (languageId == 'en') {
+      await context.read<LocaleProvider>().setLocale(const Locale('en'));
+    } else if (languageId == 'fil') {
+      await context.read<LocaleProvider>().setLocale(const Locale('tl'));
+    } else if (languageId == 'ini') {
+      await context.read<LocaleProvider>().setLocale(const Locale('rol'));
+    } else if (languageId == 'asi') {
+      await context.read<LocaleProvider>().setLocale(const Locale('bno'));
+    } else if (languageId == 'onh') {
+      await context.read<LocaleProvider>().setLocale(const Locale('loc'));
+    }
     await Future<void>.delayed(const Duration(milliseconds: 180));
     if (context.mounted) {
       Navigator.pushNamed(context, '/select-languages');
@@ -26,7 +36,9 @@ class LanguageSelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<LanguageProvider>();
+    final app = AppLocalizations.of(context)!;
+    final localeProvider = context.watch<LocaleProvider>();
+    final locale = localeProvider.locale;
     return Scaffold(
       backgroundColor: AppColors.canvas,
       body: Column(
@@ -63,7 +75,7 @@ class LanguageSelectionScreen extends StatelessWidget {
                       ),
                       SizedBox(height: Responsive.space(context, 16)),
                       Text(
-                        'Piliin ang inyong wika',
+                        app.languageSelectionTitle,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppColors.espresso,
@@ -73,8 +85,7 @@ class LanguageSelectionScreen extends StatelessWidget {
                       ),
                       SizedBox(height: Responsive.space(context, 12)),
                       Text(
-                        'Choose the language you are most comfortable with. '
-                        'Pumili ng wika. Pagpili wika. Pili it wika.',
+                        app.languageSelectionDescription,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppColors.espresso,
@@ -84,23 +95,31 @@ class LanguageSelectionScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: Responsive.space(context, 24)),
-                      for (var index = 0; index < languages.length; index++) ...[
+                      for (var index = 0;
+                          index < languages.length;
+                          index++) ...[
                         if (index > 0)
                           SizedBox(height: Responsive.space(context, 12)),
                         LanguageCard(
                           language: languages[index],
-                          isSelected: provider.hasExplicitSelection &&
-                              provider.uiLanguage == languages[index].id,
+                          isSelected: localeProvider.hasExplicitSelection &&
+                              switch (languages[index].id) {
+                                'en' => locale.languageCode == 'en',
+                                'fil' => locale.languageCode == 'tl',
+                                'ini' => locale.languageCode == 'rol',
+                                'asi' => locale.languageCode == 'bno',
+                                'onh' => locale.languageCode == 'loc',
+                                _ => false,
+                              },
                           onTap: () => _selectLanguage(
                             context,
-                            provider,
                             languages[index].id,
                           ),
                         ),
                       ],
                       SizedBox(height: Responsive.space(context, 16)),
                       Text(
-                        'You can change the language at any time during your session.',
+                        app.languageSelectionChangeNote,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppColors.espresso,

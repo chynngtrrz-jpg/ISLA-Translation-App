@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../core/constants/languages.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
@@ -30,21 +31,25 @@ class LanguagePickerSheet extends StatelessWidget {
     required bool Function(String, String) isPairSupported,
     required ValueChanged<String> onSelected,
   }) async {
-    await showModalBottomSheet<void>(
+    await showDialog<void>(
       context: context,
-      isScrollControlled: true,
-      useSafeArea: true,
-      showDragHandle: true,
-      backgroundColor: AppColors.canvas,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(Responsive.space(context, 24)),
+      barrierDismissible: true,
+      builder: (dialogContext) => Dialog(
+        backgroundColor: AppColors.canvas,
+        insetPadding: const EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 24,
         ),
-      ),
-      builder: (context) => Align(
-        alignment: Alignment.bottomCenter,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            Responsive.space(dialogContext, 20),
+          ),
+        ),
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 600),
+          constraints: BoxConstraints(
+            maxWidth: 420,
+            maxHeight: MediaQuery.sizeOf(dialogContext).height * 0.7,
+          ),
           child: SizedBox(
             width: double.infinity,
             child: LanguagePickerSheet(
@@ -64,7 +69,7 @@ class LanguagePickerSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final maxHeight = MediaQuery.sizeOf(context).height * 0.72;
+    final app = AppLocalizations.of(context)!;
     return IconTheme.merge(
       data: IconThemeData(size: Responsive.sp(context, 24)),
       child: Semantics(
@@ -72,90 +77,86 @@ class LanguagePickerSheet extends StatelessWidget {
         explicitChildNodes: true,
         scopesRoute: true,
         namesRoute: true,
-        label: 'dialog',
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: maxHeight),
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(
-              Responsive.space(context, 20),
-              Responsive.space(context, 4),
-              Responsive.space(context, 20),
-              Responsive.space(context, 20),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: AppColors.espresso,
-                    fontSize: Responsive.sp(context, 22),
-                    fontWeight: FontWeight.w800,
-                  ),
+        label: app.languageDialog,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(
+            Responsive.space(context, 20),
+            Responsive.space(context, 4),
+            Responsive.space(context, 20),
+            Responsive.space(context, 20),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  color: AppColors.espresso,
+                  fontSize: Responsive.sp(context, 22),
+                  fontWeight: FontWeight.w800,
                 ),
-                SizedBox(height: Responsive.space(context, 12)),
-                Flexible(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: languages.length,
-                    itemBuilder: (context, index) {
-                      final language = languages[index];
-                      final isSelected = language.id == selectedId;
-                      final isSameAsOther = language.id == otherId;
-                      final isSupported = isPairSupported(
-                        language.id,
-                        otherId,
-                      );
-                      final isDisabled = isSameAsOther || !isSupported;
-                      final reason = isSameAsOther
-                          ? 'Already selected'
-                          : isDisabled
-                              ? 'Not available'
-                              : null;
+              ),
+              SizedBox(height: Responsive.space(context, 12)),
+              Flexible(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: languages.length,
+                  itemBuilder: (context, index) {
+                    final language = languages[index];
+                    final isSelected = language.id == selectedId;
+                    final isSameAsOther = language.id == otherId;
+                    final isSupported = isPairSupported(
+                      language.id,
+                      otherId,
+                    );
+                    final isDisabled = isSameAsOther || !isSupported;
+                    final reason = isSameAsOther
+                        ? app.alreadySelected
+                        : isDisabled
+                            ? app.notAvailable
+                            : null;
 
-                      return Semantics(
+                    return Semantics(
+                      enabled: !isDisabled,
+                      selected: isSelected,
+                      child: ListTile(
                         enabled: !isDisabled,
-                        selected: isSelected,
-                        child: ListTile(
-                          enabled: !isDisabled,
-                          minVerticalPadding: Responsive.space(context, 8),
-                          title: Text(
-                            language.name,
-                            style: TextStyle(
-                              color: isDisabled
-                                  ? AppColors.clay
-                                  : AppColors.espresso,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          subtitle: reason == null
-                              ? null
-                              : Text(
-                                  reason,
-                                  style: const TextStyle(color: AppColors.clay),
-                                ),
-                          trailing: Icon(
-                            isSelected
-                                ? Icons.radio_button_checked
-                                : Icons.radio_button_unchecked,
+                        minVerticalPadding: Responsive.space(context, 8),
+                        title: Text(
+                          language.name,
+                          style: TextStyle(
                             color: isDisabled
                                 ? AppColors.clay
-                                : AppColors.chambray,
+                                : AppColors.espresso,
+                            fontWeight: FontWeight.w700,
                           ),
-                          onTap: isDisabled
-                              ? null
-                              : () {
-                                  onSelected(language.id);
-                                  Navigator.pop(context);
-                                },
                         ),
-                      );
-                    },
-                  ),
+                        subtitle: reason == null
+                            ? null
+                            : Text(
+                                reason,
+                                style: const TextStyle(color: AppColors.clay),
+                              ),
+                        trailing: Icon(
+                          isSelected
+                              ? Icons.radio_button_checked
+                              : Icons.radio_button_unchecked,
+                          color:
+                              isDisabled ? AppColors.clay : AppColors.chambray,
+                        ),
+                        onTap: isDisabled
+                            ? null
+                            : () {
+                                onSelected(language.id);
+                                Navigator.pop(context);
+                              },
+                      ),
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

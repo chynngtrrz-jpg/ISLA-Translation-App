@@ -21,8 +21,13 @@ class DeviceCameraService implements CameraService {
       ResolutionPreset.medium,
       enableAudio: false,
     );
-    await controller.initialize();
-    return controller;
+    try {
+      await controller.initialize();
+      return controller;
+    } catch (_) {
+      await controller.dispose();
+      rethrow;
+    }
   }
 
   @override

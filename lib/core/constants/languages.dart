@@ -15,8 +15,8 @@ const List<Language> languages = [
   ),
   Language(
     id: 'fil',
-    name: 'Filipino',
-    fieldLabel: 'Filipino',
+    name: 'Tagalog',
+    fieldLabel: 'Tagalog',
     greeting: 'Magandang Araw!',
     fillColor: AppColors.bisque,
     textColor: AppColors.espresso,
@@ -25,7 +25,7 @@ const List<Language> languages = [
   ),
   Language(
     id: 'ini',
-    name: 'Romblomanon (Ini)',
+    name: 'Ini (Romblomanon)',
     fieldLabel: 'Ini (Romblomanon)',
     greeting: 'Maayong Adlaw!',
     fillColor: AppColors.glacier,

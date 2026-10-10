@@ -1,0 +1,131 @@
+{
+  "@@locale": "tl",
+  "getStarted": "Magsimula",
+  "languageSelectionTitle": "Piliin ang inyong wika",
+  "languageSelectionDescription": "Piliin ang wikang pinakakomportable kayong gamitin.",
+  "languageSelectionChangeNote": "Maaari ninyong palitan ang wika anumang oras habang ginagamit ang app.",
+  "selectLanguage": "Piliin",
+  "appSubtitle": "Pagsasalin ng Wika",
+  "welcomeTitle": "Welcome to ISLA",
+  "selectLanguagesBanner": "Piliin ang mga wika, pagkatapos ay pindutin ang \"Susunod\" upang ilagay ang inyong mensahe.",
+  "inputTextBanner": "Isulat ang iyong mensahe, pagkatapos ay pindutin ang Isalin.",
+  "inputVoiceBanner": "Pindutin ang mikropono at magsalita, pagkatapos ay pindutin ang Isalin.",
+  "inputCameraBanner": "Itutok ang kamera sa teksto, pagkatapos ay pindutin ang Kunan ng larawan.",
+  "stepChooseLanguages": "Pumili ng mga Wika",
+  "stepInputTranslate": "Ilagay at Isalin",
+  "stepViewResult": "Tingnan ang Salin",
+  "stepSemanticsCompleted": "Hakbang {n} sa {total}, {label}, kumpleto na",
+  "@stepSemanticsCompleted": {
+    "placeholders": {
+      "n": {},
+      "total": {},
+      "label": {}
+    }
+  },
+  "stepSemanticsCurrent": "Hakbang {n} sa {total}, {label}, kasalukuyan",
+  "@stepSemanticsCurrent": {
+    "placeholders": {
+      "n": {},
+      "total": {},
+      "label": {}
+    }
+  },
+  "stepSemanticsUpcoming": "Hakbang {n} sa {total}, {label}",
+  "@stepSemanticsUpcoming": {
+    "placeholders": {
+      "n": {},
+      "total": {},
+      "label": {}
+    }
+  },
+  "selectLanguagesTitle": "Pumili ng mga Wika",
+  "sourceLanguage": "Pinagmumulang wika",
+  "targetLanguage": "Wikang pagsasalinan",
+  "sourceLanguageHeading": "PINAGMUMULANG WIKA",
+  "targetLanguageHeading": "WIKANG PAGSASALINAN",
+  "unsupportedDirection": "Hindi available ang direksiyong ito.",
+  "next": "Susunod",
+  "nextDisabled": "Susunod, hindi pa magagamit",
+  "languageDialog": "Pagpili ng wika",
+  "alreadySelected": "Napili na",
+  "notAvailable": "Hindi available",
+  "languageFieldSemantics": "{fieldName}, {value}. Mag-double tap para palitan.",
+  "@languageFieldSemantics": {
+    "placeholders": {
+      "fieldName": {},
+      "value": {}
+    }
+  },
+  "translationDirection": "{source} patungong {target}",
+  "@translationDirection": {
+    "placeholders": {
+      "source": {},
+      "target": {}
+    }
+  },
+  "swapLanguages": "Pagpalitin ang mga pinagmulan at pagsasalinang wika",
+  "backToLanguageSelection": "Bumalik sa pagpili ng wika",
+  "backToLanguagePairSelection": "Bumalik sa pagpili ng pares ng wika",
+  "backToInputTranslation": "Bumalik sa paglalagay at pagsasalin",
+  "inputChange": "Palitan",
+  "inputTitle": "Inyong Mensahe",
+  "modeText": "Teksto",
+  "modeVoice": "Boses",
+  "modeCamera": "Kamera",
+  "inputLabelText": "ILAGAY ANG TEKSTO",
+  "inputLabelTranscript": "TRANSKRIPSIYON",
+  "inputLabelRecognized": "KINILALANG TEKSTO",
+  "inputHint": "I-type rito ang inyong mensahe",
+  "inputCounter": "{count} / {max}",
+  "@inputCounter": {
+    "placeholders": {
+      "count": {},
+      "max": {}
+    }
+  },
+  "inputTranslate": "Isalin",
+  "inputTranslating": "Isinasalin...",
+  "inputClear": "Burahin at Magsimulang Muli",
+  "statusModelLoading": "Inihahanda ang modelo",
+  "commonError": "Nagkaproblema. Subukan muli.",
+  "voiceIdle": "Pindutin para magsalita",
+  "voiceListening": "Nakikinig...",
+  "voiceProcessing": "Pinoproseso...",
+  "voiceUnavailable": "Hindi magagamit ang pag-input gamit ang boses para sa {language}.",
+  "@voiceUnavailable": {
+    "placeholders": {
+      "language": {}
+    }
+  },
+  "voicePermissionDenied": "Kailangan ang pahintulot sa mikropono.",
+  "voicePermissionPermanentlyDenied": "Naka-block ang mikropono. Paganahin ito sa mga setting ng app.",
+  "cameraCapture": "Kunan ng larawan",
+  "cameraLiveHint": "Itutok sa teksto, pagkatapos ay pindutin ang Kunan.",
+  "cameraSelectHint": "Pindutin ang mga kahon para piliin ang tekstong isasalin.",
+  "cameraReading": "Binabasa ang teksto...",
+  "cameraRetake": "Kumuha Muli",
+  "cameraSelectAll": "Piliin Lahat",
+  "cameraClearSelection": "Alisin ang Pinili",
+  "cameraGallery": "Mag-upload mula sa gallery",
+  "cameraPermissionDenied": "Kailangan ang pahintulot sa kamera.",
+  "cameraPermissionPermanentlyDenied": "Naka-block ang kamera. Paganahin ito sa mga setting ng app.",
+  "permissionOpenSettings": "Buksan ang Mga Setting",
+  "cameraNoText": "Walang natukoy na teksto. Kumuha muli o pumili ng ibang larawan.",
+  "cameraOcrUnavailable": "Sa Android app lamang magagamit ang pagkilala ng teksto.",
+  "resultTitle": "Resulta ng Salin",
+  "resultDescription": "Suriin sa ibaba ang inyong salin.",
+  "resultLabel": "RESULTA NG SALIN",
+  "resultSpeak": "Pakinggan",
+  "resultSpeakApprox": "Pakinggan (tinatayang pagbigkas)",
+  "resultSpeakUnavailable": "Walang magagamit na boses para sa wikang ito.",
+  "originalTextLabel": "ORIHINAL · {language}",
+  "@originalTextLabel": {
+    "placeholders": {
+      "language": {}
+    }
+  },
+  "noTranslationYet": "Wala pang salin",
+  "backToInput": "Bumalik sa Paglalagay",
+  "translateAnother": "Magsalin Pa",
+  "startOver": "Magsimula Muli"
+}

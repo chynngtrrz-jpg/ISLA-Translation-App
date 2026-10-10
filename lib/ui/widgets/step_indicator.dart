@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../core/constants/app_config.dart';
-import '../../core/localization/isla_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 
@@ -13,32 +13,37 @@ class StepIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final app = AppLocalizations.of(context)!;
     final disableAnimations = MediaQuery.disableAnimationsOf(context);
     final labels = [
-      context.t(L10nKeys.stepChooseLanguages),
-      context.t(L10nKeys.stepInputTranslate),
-      context.t(L10nKeys.stepViewResult),
+      app.stepChooseLanguages,
+      app.stepInputTranslate,
+      app.stepViewResult,
     ];
     Widget buildStep(int index) {
       final step = index + 1;
       final completed = step < currentStep;
       final current = step == currentStep;
-      final semanticKey = completed
-          ? L10nKeys.stepSemanticsCompleted
-          : current
-              ? L10nKeys.stepSemanticsCurrent
-              : L10nKeys.stepSemanticsUpcoming;
       return Expanded(
         child: Semantics(
           container: true,
-          label: context.t(
-            semanticKey,
-            args: {
-              'n': '$step',
-              'total': '${translationStepLabels.length}',
-              'label': labels[index],
-            },
-          ),
+          label: completed
+              ? app.stepSemanticsCompleted(
+                  '$step',
+                  '$translationStepCount',
+                  labels[index],
+                )
+              : current
+                  ? app.stepSemanticsCurrent(
+                      '$step',
+                      '$translationStepCount',
+                      labels[index],
+                    )
+                  : app.stepSemanticsUpcoming(
+                      '$step',
+                      '$translationStepCount',
+                      labels[index],
+                    ),
           child: Column(
             children: [
               Container(
@@ -69,9 +74,8 @@ class StepIndicator extends StatelessWidget {
                     : Text(
                         '$step',
                         style: TextStyle(
-                          color: current
-                              ? AppColors.glacier
-                              : AppColors.espresso,
+                          color:
+                              current ? AppColors.glacier : AppColors.espresso,
                           fontSize: Responsive.sp(context, 14),
                           fontWeight: FontWeight.w700,
                         ),
@@ -116,9 +120,7 @@ class StepIndicator extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  for (var index = 0;
-                      index < translationStepLabels.length;
-                      index++)
+                  for (var index = 0; index < translationStepCount; index++)
                     buildStep(index),
                 ],
               ),

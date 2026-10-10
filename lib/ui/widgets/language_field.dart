@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 
@@ -20,10 +21,11 @@ class LanguageField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final app = AppLocalizations.of(context)!;
     final disableAnimations = MediaQuery.disableAnimationsOf(context);
     return Semantics(
       button: true,
-      label: '$fieldName, $value. Double tap to change.',
+      label: app.languageFieldSemantics(fieldName, value),
       child: Material(
         color: AppColors.canvas,
         borderRadius: BorderRadius.circular(Responsive.space(context, 20)),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/localization/isla_localizations.dart';
+import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../data/models/translation_result.dart';
@@ -44,15 +44,16 @@ class TranslationResultCard extends StatelessWidget {
   }
 
   Widget _resultContent(BuildContext context, TranslationResult result) {
+    final app = AppLocalizations.of(context)!;
     final tooltip = !speechAvailable
-        ? context.t(L10nKeys.resultSpeakUnavailable)
-        : context.t(approximateVoice
-            ? L10nKeys.resultSpeakApprox
-            : L10nKeys.resultSpeak);
+        ? app.resultSpeakUnavailable
+        : approximateVoice
+            ? app.resultSpeakApprox
+            : app.resultSpeak;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _SectionHeading(context.t(L10nKeys.resultLabel)),
+        _SectionHeading(app.resultLabel),
         SizedBox(height: Responsive.space(context, 8)),
         Container(
           padding: EdgeInsets.all(Responsive.space(context, 18)),

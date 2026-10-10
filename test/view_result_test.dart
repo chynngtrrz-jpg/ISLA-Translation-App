@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
+import 'package:isla_app/l10n/app_localizations.dart';
 import 'package:isla_app/data/models/language.dart';
 import 'package:isla_app/data/models/translation_result.dart';
 import 'package:isla_app/data/services/translator_service.dart';
@@ -9,6 +11,7 @@ import 'package:isla_app/data/services/tts_service.dart';
 import 'package:isla_app/providers/session_provider.dart';
 import 'package:isla_app/core/theme/app_colors.dart';
 import 'package:isla_app/ui/screens/view_result_screen.dart';
+import 'package:isla_app/ui/widgets/isla_app_bar.dart';
 import 'package:isla_app/ui/widgets/translation_result_card.dart';
 
 class _Translator implements TranslatorService {
@@ -47,6 +50,13 @@ Widget _testApp({
     ChangeNotifierProvider<SessionProvider>.value(
       value: session,
       child: MaterialApp(
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
         routes: {
           '/input-translate': (_) => const Scaffold(body: Text('Input screen')),
           '/select-languages': (_) =>
@@ -82,11 +92,11 @@ void main() {
 
     expect(find.text('Translation Result'), findsOneWidget);
     expect(find.text('Review your translation below.'), findsOneWidget);
-    expect(find.text('ORIGINAL · Filipino'), findsOneWidget);
+    expect(find.text('ORIGINAL · Tagalog'), findsOneWidget);
     expect(find.text('Maayong adlaw'), findsOneWidget);
     expect(find.text('Maayong aga.'), findsOneWidget);
-    expect(find.text('Translation confidence: High'), findsOneWidget);
-    expect(find.text('Verify with a local speaker.'), findsOneWidget);
+    expect(find.textContaining('Translation confidence:'), findsNothing);
+    expect(find.text('Verify with a local speaker.'), findsNothing);
     expect(find.text('Translate Another'), findsOneWidget);
     expect(find.text('Start Over'), findsOneWidget);
 
@@ -111,6 +121,30 @@ void main() {
       (activeStepThree.decoration! as BoxDecoration).color,
       AppColors.espresso,
     );
+  });
+
+  testWidgets('result banner stays near the top of a tall phone screen',
+      (tester) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(390, 844);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    final session = await _translatedSession();
+    await tester.pumpWidget(
+      _testApp(
+        session: session,
+        home: ViewResultScreen(ttsService: _Tts()),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    final appBarBottom = tester.getRect(find.byType(IslaAppBar)).bottom;
+    final bannerTitleTop =
+        tester.getTopLeft(find.text('Translation Result')).dy;
+    expect(bannerTitleTop - appBarBottom, lessThan(50));
+    final startOverBottom = tester.getBottomLeft(find.text('Start Over')).dy;
+    expect(startOverBottom, greaterThan(tester.view.physicalSize.height * 0.9));
   });
 
   testWidgets('Translate Another returns to input and retains session data',

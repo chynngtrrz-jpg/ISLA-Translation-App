@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/localization/isla_localizations.dart';
+import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 
@@ -11,8 +11,10 @@ class VoiceInputPanel extends StatefulWidget {
     required this.listening,
     required this.processing,
     required this.errorText,
+    required this.permissionPermanentlyDenied,
     required this.languageLabel,
     required this.onTap,
+    required this.onOpenSettings,
     super.key,
   });
 
@@ -20,8 +22,10 @@ class VoiceInputPanel extends StatefulWidget {
   final bool listening;
   final bool processing;
   final String? errorText;
+  final bool permissionPermanentlyDenied;
   final String languageLabel;
   final VoidCallback onTap;
+  final VoidCallback onOpenSettings;
 
   @override
   State<VoiceInputPanel> createState() => _VoiceInputPanelState();
@@ -53,17 +57,15 @@ class _VoiceInputPanelState extends State<VoiceInputPanel>
 
   @override
   Widget build(BuildContext context) {
+    final app = AppLocalizations.of(context)!;
     final unavailable = !widget.available;
     final caption = widget.processing
-        ? context.t(L10nKeys.voiceProcessing)
+        ? app.voiceProcessing
         : widget.listening
-            ? context.t(L10nKeys.voiceListening)
+            ? app.voiceListening
             : unavailable
-                ? context.t(
-                    L10nKeys.voiceUnavailable,
-                    args: {'language': widget.languageLabel},
-                  )
-                : context.t(L10nKeys.voiceIdle);
+                ? app.voiceUnavailable(widget.languageLabel)
+                : app.voiceIdle;
     return Column(
       children: [
         SizedBox(height: Responsive.space(context, 8)),
@@ -125,6 +127,11 @@ class _VoiceInputPanelState extends State<VoiceInputPanel>
             fontSize: Responsive.sp(context, 14),
           ),
         ),
+        if (widget.permissionPermanentlyDenied)
+          TextButton(
+            onPressed: widget.onOpenSettings,
+            child: Text(app.permissionOpenSettings),
+          ),
       ],
     );
   }

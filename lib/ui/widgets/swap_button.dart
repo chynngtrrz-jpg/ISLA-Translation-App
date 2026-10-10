@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 
@@ -19,11 +20,12 @@ class _SwapButtonState extends State<SwapButton> {
   @override
   Widget build(BuildContext context) {
     final disableAnimations = MediaQuery.disableAnimationsOf(context);
+    final label = AppLocalizations.of(context)!.swapLanguages;
     return Tooltip(
-      message: 'Swap source and target languages',
+      message: label,
       child: Semantics(
         button: true,
-        label: 'Swap source and target languages',
+        label: label,
         child: Material(
           color: AppColors.bisque,
           shape: const CircleBorder(),

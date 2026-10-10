@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/localization/isla_localizations.dart';
+import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 
@@ -17,10 +17,11 @@ class InputModeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final app = AppLocalizations.of(context)!;
     final options = [
-      ('text', context.t(L10nKeys.modeText), Icons.text_fields),
-      ('voice', context.t(L10nKeys.modeVoice), Icons.mic_none),
-      ('camera', context.t(L10nKeys.modeCamera), Icons.photo_camera_outlined),
+      ('text', app.modeText, Icons.text_fields),
+      ('voice', app.modeVoice, Icons.mic_none),
+      ('camera', app.modeCamera, Icons.photo_camera_outlined),
     ];
     return Container(
       padding: EdgeInsets.all(Responsive.space(context, 6)),

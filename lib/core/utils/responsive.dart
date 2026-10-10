@@ -30,12 +30,14 @@ class ResponsiveCenter extends StatelessWidget {
     required this.child,
     this.mediumMaxWidth = 720,
     this.expandedMaxWidth = 960,
+    this.alignment = Alignment.center,
     super.key,
   });
 
   final Widget child;
   final double mediumMaxWidth;
   final double expandedMaxWidth;
+  final AlignmentGeometry alignment;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,8 @@ class ResponsiveCenter extends StatelessWidget {
       ResponsiveBreakpoint.medium => mediumMaxWidth,
       ResponsiveBreakpoint.expanded => expandedMaxWidth,
     };
-    return Center(
+    return Align(
+      alignment: alignment,
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: maxWidth),
         child: SizedBox(

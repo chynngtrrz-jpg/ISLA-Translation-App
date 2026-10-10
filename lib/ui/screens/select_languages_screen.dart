@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../core/constants/languages.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../data/models/language.dart';
-import '../../providers/language_provider.dart';
 import '../../providers/session_provider.dart';
 import '../widgets/isla_app_bar.dart';
 import '../widgets/language_field.dart';
@@ -34,8 +34,7 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
     if (!_initialized) {
       final preservePair = ModalRoute.of(context)?.settings.arguments == true;
       if (!preservePair) {
-        final uiLanguageId = context.read<LanguageProvider>().uiLanguage;
-        context.read<SessionProvider>().initFromUiLanguage(uiLanguageId);
+        context.read<SessionProvider>().initTranslationFlow();
       }
       _initialized = true;
     }
@@ -53,10 +52,11 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
 
   Future<void> _openPicker({required bool isSource}) async {
     final session = context.read<SessionProvider>();
+    final app = AppLocalizations.of(context)!;
     final focusNode = isSource ? _sourceFocusNode : _targetFocusNode;
     await LanguagePickerSheet.show(
       context: context,
-      title: isSource ? 'Source language' : 'Target language',
+      title: isSource ? app.sourceLanguage : app.targetLanguage,
       selectedId: isSource ? session.sourceId : session.targetId,
       otherId: isSource ? session.targetId : session.sourceId,
       isSource: isSource,
@@ -70,7 +70,9 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
     final swapped = context.read<SessionProvider>().swap();
     if (!swapped) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('This direction is not available.')),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.unsupportedDirection),
+        ),
       );
     }
     return swapped;
@@ -78,6 +80,7 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final app = AppLocalizations.of(context)!;
     final session = context.watch<SessionProvider>();
     final source = _languageFor(session.sourceId);
     final target = _languageFor(session.targetId);
@@ -87,10 +90,10 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
       backgroundColor: AppColors.canvas,
       body: Column(
         children: [
-          const IslaAppBar(
-            subtitle: 'Pagsasalin ng Wika · Language Translation',
+          IslaAppBar(
+            subtitle: app.appSubtitle,
             trailing: ScreenBackButton(
-              tooltip: 'Back to language selection',
+              tooltip: app.backToLanguageSelection,
             ),
           ),
           Expanded(
@@ -107,7 +110,7 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const WelcomeBanner(),
+                      WelcomeBanner(body: app.selectLanguagesBanner),
                       SizedBox(height: Responsive.space(context, 16)),
                       const StepIndicator(currentStep: 1),
                       SizedBox(height: Responsive.space(context, 16)),
@@ -130,7 +133,7 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Text(
-                              'Select Languages',
+                              app.selectLanguagesTitle,
                               style: TextStyle(
                                 color: AppColors.espresso,
                                 fontSize: Responsive.sp(context, 22),
@@ -138,11 +141,11 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
                               ),
                             ),
                             SizedBox(height: Responsive.space(context, 16)),
-                            const _FieldHeading('SOURCE LANGUAGE'),
+                            _FieldHeading(app.sourceLanguageHeading),
                             SizedBox(height: Responsive.space(context, 8)),
                             LanguageField(
                               key: const ValueKey('source-language-field'),
-                              fieldName: 'Source language',
+                              fieldName: app.sourceLanguage,
                               value: source.fieldLabel,
                               focusNode: _sourceFocusNode,
                               onTap: () => _openPicker(isSource: true),
@@ -150,11 +153,11 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
                             SizedBox(height: Responsive.space(context, 12)),
                             Center(child: SwapButton(onSwap: _swapLanguages)),
                             SizedBox(height: Responsive.space(context, 12)),
-                            const _FieldHeading('TARGET LANGUAGE'),
+                            _FieldHeading(app.targetLanguageHeading),
                             SizedBox(height: Responsive.space(context, 8)),
                             LanguageField(
                               key: const ValueKey('target-language-field'),
-                              fieldName: 'Target language',
+                              fieldName: app.targetLanguage,
                               value: target.fieldLabel,
                               focusNode: _targetFocusNode,
                               onTap: () => _openPicker(isSource: false),
@@ -163,7 +166,8 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
                             Semantics(
                               button: true,
                               enabled: isValid,
-                              label: isValid ? 'Next' : 'Next, disabled',
+                              label:
+                                  isValid ? app.next : app.nextDisabled,
                               child: SizedBox(
                                 height: Responsive.space(context, 52),
                                 child: Material(
@@ -184,7 +188,7 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Next',
+                                          app.next,
                                           style: TextStyle(
                                             color: AppColors.espresso.withValues(
                                               alpha: isValid ? 1 : 0.6,
@@ -210,28 +214,6 @@ class _SelectLanguagesScreenState extends State<SelectLanguagesScreen> {
                               ),
                             ),
                           ],
-                        ),
-                      ),
-                      SizedBox(height: Responsive.space(context, 12)),
-                      SizedBox(
-                        height: Responsive.space(context, 46),
-                        child: Material(
-                          color: AppColors.glacier,
-                          shape: const StadiumBorder(),
-                          child: InkWell(
-                            onTap: session.reset,
-                            customBorder: const StadiumBorder(),
-                            child: Center(
-                              child: Text(
-                                'Clear & Start Over',
-                                style: TextStyle(
-                                  color: AppColors.espresso,
-                                  fontSize: Responsive.sp(context, 16),
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                     ],

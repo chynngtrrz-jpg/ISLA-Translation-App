@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/localization/isla_localizations.dart';
+import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../data/models/language.dart';
@@ -29,13 +29,14 @@ class LanguagePairBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final app = AppLocalizations.of(context)!;
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       spacing: Responsive.space(context, 16),
       runSpacing: Responsive.space(context, 8),
       children: [
         Semantics(
-          label: '${source.fieldLabel} to ${target.fieldLabel}',
+          label: app.translationDirection(source.fieldLabel, target.fieldLabel),
           child: Container(
             padding: EdgeInsets.symmetric(
               horizontal: Responsive.space(context, 16),
@@ -77,7 +78,7 @@ class LanguagePairBar extends StatelessWidget {
         ),
         Semantics(
           button: true,
-          label: context.t(L10nKeys.inputChange),
+          label: app.inputChange,
           child: SizedBox(
             height: Responsive.space(context, 48),
             child: TextButton(
@@ -93,7 +94,7 @@ class LanguagePairBar extends StatelessWidget {
                   decoration: TextDecoration.underline,
                 ),
               ),
-              child: Text(context.t(L10nKeys.inputChange)),
+              child: Text(app.inputChange),
             ),
           ),
         ),

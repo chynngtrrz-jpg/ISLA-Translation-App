@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../core/constants/app_config.dart';
-import '../../core/localization/isla_localizations.dart';
+import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 
@@ -21,6 +21,7 @@ class MessageField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final app = AppLocalizations.of(context)!;
     return TextField(
       controller: controller,
       focusNode: focusNode,
@@ -28,19 +29,20 @@ class MessageField extends StatelessWidget {
       maxLines: 6,
       maxLength: kMaxChars,
       keyboardType: TextInputType.multiline,
-      autocorrect: false,
-      enableSuggestions: false,
-      showCursor: true,
+      textInputAction: TextInputAction.newline,
+      textCapitalization: TextCapitalization.sentences,
+      autocorrect: true,
+      enableSuggestions: true,
       inputFormatters: [LengthLimitingTextInputFormatter(kMaxChars)],
       onChanged: onChanged,
-      onTapOutside: (_) {},
+      onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       style: TextStyle(
         color: AppColors.espresso,
         fontSize: Responsive.sp(context, 18),
         fontWeight: FontWeight.w400,
       ),
       decoration: InputDecoration(
-        hintText: context.t(L10nKeys.inputHint),
+        hintText: app.inputHint,
         hintStyle: const TextStyle(color: AppColors.clay),
         filled: true,
         fillColor: AppColors.canvas,

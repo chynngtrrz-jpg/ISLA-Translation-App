@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../core/constants/languages.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
@@ -24,8 +25,7 @@ class ViewResultScreen extends StatefulWidget {
 }
 
 class _ViewResultScreenState extends State<ViewResultScreen> {
-  late final TtsService _ttsService =
-      widget.ttsService ?? DeviceTtsService();
+  late final TtsService _ttsService = widget.ttsService ?? DeviceTtsService();
   bool _ttsAvailable = false;
   bool _speaking = false;
   String? _checkedTtsLocale;
@@ -114,6 +114,7 @@ class _ViewResultScreenState extends State<ViewResultScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final app = AppLocalizations.of(context)!;
     final session = context.watch<SessionProvider>();
     final result = session.result;
     final source = _languageFor(session.sourceId);
@@ -123,16 +124,17 @@ class _ViewResultScreenState extends State<ViewResultScreen> {
       backgroundColor: AppColors.canvas,
       body: Column(
         children: [
-          const IslaAppBar(
-            subtitle: 'Pagsasalin ng Wika · Language Translation',
+          IslaAppBar(
+            subtitle: app.appSubtitle,
             trailing: ScreenBackButton(
-              tooltip: 'Back to input and translation',
+              tooltip: app.backToInputTranslation,
             ),
           ),
           Expanded(
             child: SafeArea(
               top: false,
               child: ResponsiveCenter(
+                alignment: Alignment.topCenter,
                 child: SingleChildScrollView(
                   padding: EdgeInsets.fromLTRB(
                     Responsive.space(context, 16),
@@ -144,12 +146,12 @@ class _ViewResultScreenState extends State<ViewResultScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       _ResultBanner(
-                        title: 'Translation Result',
-                        body: 'Review your translation below.',
+                        title: app.resultTitle,
+                        body: app.resultDescription,
                       ),
                       SizedBox(height: Responsive.space(context, 16)),
                       const StepIndicator(currentStep: 3),
-                      SizedBox(height: Responsive.space(context, 20)),
+                      SizedBox(height: Responsive.space(context, 12)),
                       if (result == null)
                         _NoResultCard(onBack: _translateAnother)
                       else ...[
@@ -159,7 +161,8 @@ class _ViewResultScreenState extends State<ViewResultScreen> {
                         ),
                         SizedBox(height: Responsive.space(context, 16)),
                         Container(
-                          padding: EdgeInsets.all(Responsive.space(context, 16)),
+                          padding:
+                              EdgeInsets.all(Responsive.space(context, 16)),
                           decoration: BoxDecoration(
                             color: AppColors.surface,
                             borderRadius: BorderRadius.circular(
@@ -187,15 +190,15 @@ class _ViewResultScreenState extends State<ViewResultScreen> {
                             onSpeak: () => _toggleSpeaking(session),
                           ),
                         ),
-                        SizedBox(height: Responsive.space(context, 20)),
+                        SizedBox(height: Responsive.space(context, 12)),
                         _ActionButton(
-                          label: 'Translate Another',
+                          label: app.translateAnother,
                           onPressed: _translateAnother,
                           backgroundColor: AppColors.chambray,
                         ),
                         SizedBox(height: Responsive.space(context, 12)),
                         _ActionButton(
-                          label: 'Start Over',
+                          label: app.startOver,
                           onPressed: () => _startOver(session),
                           backgroundColor: AppColors.glacier,
                         ),
@@ -263,18 +266,19 @@ class _OriginalTextCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final app = AppLocalizations.of(context)!;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(Responsive.space(context, 16)),
       decoration: BoxDecoration(
         color: AppColors.surface,
-        borderRadius: BorderRadius.circular(Responsive.space(context, 20)),
+        borderRadius: BorderRadius.circular(Responsive.space(context, 24)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'ORIGINAL · $languageLabel',
+            app.originalTextLabel(languageLabel),
             style: TextStyle(
               color: AppColors.espresso,
               fontSize: Responsive.sp(context, 14),
@@ -303,6 +307,7 @@ class _NoResultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final app = AppLocalizations.of(context)!;
     return Container(
       padding: EdgeInsets.all(Responsive.space(context, 16)),
       decoration: BoxDecoration(
@@ -313,7 +318,7 @@ class _NoResultCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'No translation yet',
+            app.noTranslationYet,
             style: TextStyle(
               color: AppColors.espresso,
               fontSize: Responsive.sp(context, 18),
@@ -322,7 +327,7 @@ class _NoResultCard extends StatelessWidget {
           ),
           SizedBox(height: Responsive.space(context, 12)),
           _ActionButton(
-            label: 'Back to Input',
+            label: app.backToInput,
             onPressed: onBack,
             backgroundColor: AppColors.chambray,
           ),

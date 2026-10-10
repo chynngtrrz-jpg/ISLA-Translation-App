@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../data/models/language.dart';
@@ -19,6 +20,7 @@ class LanguageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final app = AppLocalizations.of(context)!;
     final disableAnimations = MediaQuery.of(context).disableAnimations;
     final selectedBorderColor =
         language.id == 'asi' ? AppColors.bisque : AppColors.espresso;
@@ -104,7 +106,7 @@ class LanguageCard extends StatelessWidget {
                           ]
                         : [
                             Text(
-                              'Select',
+                              app.selectLanguage,
                               maxLines: 1,
                               softWrap: false,
                               style: TextStyle(
