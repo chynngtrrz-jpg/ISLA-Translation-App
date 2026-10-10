@@ -25,11 +25,19 @@ class SessionProvider extends ChangeNotifier {
   TranslationResult? result;
   bool isTranslating = false;
   String? errorKey;
+  bool modelLoadFailed = false;
   bool get isModelReady => _translator.isReady;
   bool get isValid => supportsPair(sourceId, targetId);
 
   bool supportsPair(String source, String target) =>
       source != target && _pairSupport(source, target);
+
+  /// Called when the translator finishes loading (or fails to load), so the
+  /// UI can drop its "model loading" message.
+  void refreshModelState({bool failed = false}) {
+    modelLoadFailed = failed;
+    notifyListeners();
+  }
 
   void initTranslationFlow() {
     sourceId = 'en';
