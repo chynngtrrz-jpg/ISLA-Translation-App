@@ -12,6 +12,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get getStarted => 'Get Started';
 
   @override
+  String get landingMascotSemantics => 'ISLA mascot';
+
+  @override
+  String get landingLogoSemantics => 'ISLA logo';
+
+  @override
   String get languageSelectionTitle => 'Choose your language';
 
   @override
@@ -26,7 +32,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectLanguage => 'Select';
 
   @override
-  String get appSubtitle => 'Language Translation';
+  String get appSubtitle => 'Every island\'s voice, kept by choice.';
+
+  @override
+  String get appBarMascotSemantics => 'ISLA mascot';
 
   @override
   String get welcomeTitle => 'Welcome to ISLA';
@@ -269,4 +278,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get startOver => 'Start Over';
+
+  @override
+  String get resultNotFound => 'No translation found for this phrase.';
+
+  @override
+  String get resultSuggestionsLabel => 'Try one of these:';
+
+  @override
+  String get resultSourcePhrasebook => 'From phrasebook';
+
+  @override
+  String get resultSourceModel => 'From model';
 }

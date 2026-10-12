@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+// Locales without built-in Flutter translations; 'loc' is Onhan (Inonhan).
+// Material, Widgets, and Cupertino texts stay English for these locales.
 const Set<String> _englishFallbackLocaleCodes = {'rol', 'bno', 'loc'};
 
 class EnglishFallbackMaterialLocalizationsDelegate

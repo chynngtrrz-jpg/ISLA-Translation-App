@@ -8,7 +8,7 @@
   "@languageSelectionTitle": {
     "description": "Screen: Language Selection"
   },
-  "languageSelectionDescription": "Choose the language you are most comfortable with.",
+  "languageSelectionDescription": "Pili it linggwahing komportable ka.",
   "@languageSelectionDescription": {
     "description": "Screen: Language Selection"
   },
@@ -20,7 +20,7 @@
   "@selectLanguage": {
     "description": "Screen: Language Selection"
   },
-  "appSubtitle": "Language Translation",
+  "appSubtitle": "Every island's voice, kept by choice.",
   "@appSubtitle": {
     "description": "Shared: App Bar"
   },
@@ -32,11 +32,11 @@
   "@selectLanguagesBanner": {
     "description": "Screen: Select Languages"
   },
-  "inputTextBanner": "Type your message, then tap Translate.",
+  "inputTextBanner": "Suyatan imo mensahe rili ag pinduton kag \"Translate\".",
   "@inputTextBanner": {
     "description": "Screen: Input and Translate"
   },
-  "inputVoiceBanner": "Tap the microphone and speak, then tap Translate.",
+  "inputVoiceBanner": "Pinduton it mikropono ag pinduton kag \"Translate\".",
   "@inputVoiceBanner": {
     "description": "Screen: Input and Translate"
   },
@@ -119,7 +119,7 @@
   "@languageDialog": {
     "description": "Screen: Select Languages"
   },
-  "alreadySelected": "Already selected",
+  "alreadySelected": "Napili na",
   "@alreadySelected": {
     "description": "Screen: Select Languages"
   },
@@ -143,19 +143,19 @@
     },
     "description": "Screen: Select Languages"
   },
-  "swapLanguages": "Swap source and target languages",
+  "swapLanguages": "Palit ginghalinan ag punterya na linggwahe",
   "@swapLanguages": {
     "description": "Screen: Select Languages"
   },
-  "backToLanguageSelection": "Back to language selection",
+  "backToLanguageSelection": "Balik sa pagpili it linggwahe",
   "@backToLanguageSelection": {
     "description": "Screen: Select Languages"
   },
-  "backToLanguagePairSelection": "Back to language pair selection",
+  "backToLanguagePairSelection": "Balik sa pagpili it pares it linggwahe",
   "@backToLanguagePairSelection": {
     "description": "Screen: Select Languages"
   },
-  "backToInputTranslation": "Back to input and translation",
+  "backToInputTranslation": "Balik sa pagsuyat ag pagsalin",
   "@backToInputTranslation": {
     "description": "Screen: Result"
   },
@@ -179,7 +179,7 @@
   "@modeCamera": {
     "description": "Screen: Input and Translate"
   },
-  "inputLabelText": "ENTER TEXT",
+  "inputLabelText": "Butang mensahe",
   "@inputLabelText": {
     "description": "Screen: Input and Translate"
   },
@@ -211,7 +211,7 @@
   "@inputTranslating": {
     "description": "Screen: Input and Translate"
   },
-  "inputClear": "Clear & Start Over",
+  "inputClear": "Burahon ag mag liwat sa una",
   "@inputClear": {
     "description": "Screens: Select Languages and Input and Translate"
   },

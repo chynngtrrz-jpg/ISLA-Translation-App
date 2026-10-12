@@ -12,6 +12,12 @@ class AppLocalizationsTl extends AppLocalizations {
   String get getStarted => 'Magsimula';
 
   @override
+  String get landingMascotSemantics => 'ISLA mascot';
+
+  @override
+  String get landingLogoSemantics => 'ISLA logo';
+
+  @override
   String get languageSelectionTitle => 'Piliin ang inyong wika';
 
   @override
@@ -26,7 +32,10 @@ class AppLocalizationsTl extends AppLocalizations {
   String get selectLanguage => 'Piliin';
 
   @override
-  String get appSubtitle => 'Pagsasalin ng Wika';
+  String get appSubtitle => 'Every island\'s voice, kept by choice.';
+
+  @override
+  String get appBarMascotSemantics => 'ISLA mascot';
 
   @override
   String get welcomeTitle => 'Welcome to ISLA';
@@ -275,4 +284,17 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get startOver => 'Magsimula Muli';
+
+  @override
+  String get resultNotFound =>
+      'Walang nahanap na salin para sa pariralang ito.';
+
+  @override
+  String get resultSuggestionsLabel => 'Subukan ang isa sa mga ito:';
+
+  @override
+  String get resultSourcePhrasebook => 'Mula sa phrasebook';
+
+  @override
+  String get resultSourceModel => 'Mula sa model';
 }

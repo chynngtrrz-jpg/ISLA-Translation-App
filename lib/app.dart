@@ -23,6 +23,7 @@ class IslaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ISLA',
+      debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       locale: context.watch<LocaleProvider>().locale,
       supportedLocales: AppLocalizations.supportedLocales,
@@ -111,7 +112,7 @@ class _LandingScreenState extends State<_LandingScreen> {
                                 image: _mascot,
                                 width: mascotWidth,
                                 fit: BoxFit.contain,
-                                semanticLabel: 'ISLA mascot',
+                                semanticLabel: app.landingMascotSemantics,
                               ),
                               SizedBox(
                                 height: Responsive.space(context, 20),
@@ -120,7 +121,7 @@ class _LandingScreenState extends State<_LandingScreen> {
                                 image: _wordmark,
                                 width: wordmarkWidth,
                                 fit: BoxFit.contain,
-                                semanticLabel: 'ISLA logo',
+                                semanticLabel: app.landingLogoSemantics,
                               ),
                               SizedBox(
                                 height: Responsive.space(context, 16),

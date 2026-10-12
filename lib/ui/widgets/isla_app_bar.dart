@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../l10n/app_localizations.dart';
 import '../../core/utils/responsive.dart';
 
 /// ISLA brand bar with status-bar inset, logo placeholder, and wordmark.
@@ -56,7 +57,8 @@ class IslaAppBar extends StatelessWidget {
                         cacheHeight: avatarCacheSize,
                         fit: BoxFit.contain,
                         filterQuality: FilterQuality.medium,
-                        semanticLabel: 'ISLA mascot',
+                        semanticLabel: AppLocalizations.of(context)?.appBarMascotSemantics ??
+                            'ISLA mascot',
                       ),
                     ),
                   ),

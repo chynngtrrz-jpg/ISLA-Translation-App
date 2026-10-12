@@ -12,11 +12,17 @@ class AppLocalizationsBno extends AppLocalizations {
   String get getStarted => 'Get Started';
 
   @override
+  String get landingMascotSemantics => 'ISLA mascot';
+
+  @override
+  String get landingLogoSemantics => 'ISLA logo';
+
+  @override
   String get languageSelectionTitle => 'Gi pili it Linggwahe';
 
   @override
   String get languageSelectionDescription =>
-      'Choose the language you are most comfortable with.';
+      'Pili it linggwahing komportable ka.';
 
   @override
   String get languageSelectionChangeNote =>
@@ -26,7 +32,10 @@ class AppLocalizationsBno extends AppLocalizations {
   String get selectLanguage => 'Pili';
 
   @override
-  String get appSubtitle => 'Language Translation';
+  String get appSubtitle => 'Every island\'s voice, kept by choice.';
+
+  @override
+  String get appBarMascotSemantics => 'ISLA mascot';
 
   @override
   String get welcomeTitle => 'Welcome to ISLA';
@@ -36,11 +45,12 @@ class AppLocalizationsBno extends AppLocalizations {
       'Pili it imo linggwahe, ag pinduton kag \"Sunor\" para mag suyat it imo mensahe.';
 
   @override
-  String get inputTextBanner => 'Type your message, then tap Translate.';
+  String get inputTextBanner =>
+      'Suyatan imo mensahe rili ag pinduton kag \"Translate\".';
 
   @override
   String get inputVoiceBanner =>
-      'Tap the microphone and speak, then tap Translate.';
+      'Pinduton it mikropono ag pinduton kag \"Translate\".';
 
   @override
   String get inputCameraBanner => 'Point the camera at text, then tap Capture.';
@@ -97,7 +107,7 @@ class AppLocalizationsBno extends AppLocalizations {
   String get languageDialog => 'Gi pili it Linggwahe';
 
   @override
-  String get alreadySelected => 'Already selected';
+  String get alreadySelected => 'Napili na';
 
   @override
   String get notAvailable => 'Not available';
@@ -113,16 +123,17 @@ class AppLocalizationsBno extends AppLocalizations {
   }
 
   @override
-  String get swapLanguages => 'Swap source and target languages';
+  String get swapLanguages => 'Palit ginghalinan ag punterya na linggwahe';
 
   @override
-  String get backToLanguageSelection => 'Back to language selection';
+  String get backToLanguageSelection => 'Balik sa pagpili it linggwahe';
 
   @override
-  String get backToLanguagePairSelection => 'Back to language pair selection';
+  String get backToLanguagePairSelection =>
+      'Balik sa pagpili it pares it linggwahe';
 
   @override
-  String get backToInputTranslation => 'Back to input and translation';
+  String get backToInputTranslation => 'Balik sa pagsuyat ag pagsalin';
 
   @override
   String get inputChange => 'Change';
@@ -140,7 +151,7 @@ class AppLocalizationsBno extends AppLocalizations {
   String get modeCamera => 'Camera';
 
   @override
-  String get inputLabelText => 'ENTER TEXT';
+  String get inputLabelText => 'Butang mensahe';
 
   @override
   String get inputLabelTranscript => 'TRANSCRIPT';
@@ -163,7 +174,7 @@ class AppLocalizationsBno extends AppLocalizations {
   String get inputTranslating => 'Translating...';
 
   @override
-  String get inputClear => 'Clear & Start Over';
+  String get inputClear => 'Burahon ag mag liwat sa una';
 
   @override
   String get statusModelLoading => 'Model loading';
@@ -269,4 +280,16 @@ class AppLocalizationsBno extends AppLocalizations {
 
   @override
   String get startOver => 'Start Over';
+
+  @override
+  String get resultNotFound => 'No translation found for this phrase.';
+
+  @override
+  String get resultSuggestionsLabel => 'Try one of these:';
+
+  @override
+  String get resultSourcePhrasebook => 'From phrasebook';
+
+  @override
+  String get resultSourceModel => 'From model';
 }

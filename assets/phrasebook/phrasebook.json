@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "generated": "2026-10-10",
+  "languages": ["en", "fil", "ini", "onh", "asi"],
+  "entries": [
+    {"id": "p0001", "en": "How to go to Bonbon Beach?", "fil": "Paano pumunta sa Bonbon Beach?", "ini": "Paano magkadto sa Bonbon Beach?", "onh": "Pano gani magayan sa Bonbon Beach?", "asi": "Paano gig pagto sa Bonbon Beach?"},
+    {"id": "p0002", "en": "How much is the fare to go there?", "fil": "Magkano ang pamasahe papunta doon?", "ini": "Tigpila ang pamasahe pakadto didto?", "onh": "Pila ang pamasahe paayan ugto?", "asi": "Pila kag pamasahe papagto?"},
+    {"id": "p0003", "en": "Where are you going?", "fil": "Saan ka papunta?", "ini": "Diin ka pakadto?", "onh": "Diin ikaw paayan?", "asi": "Riin ka mapagto?"},
+    {"id": "p0004", "en": "What is good to eat around here?", "fil": "Ano ang masarap na pagkain dito?", "ini": "Ano ang kanamit na pagkaon diri?", "onh": "Ano namit nga pagkaon udya?", "asi": "Nio kag kalasang pagkaon dili?"},
+    {"id": "p0005", "en": "Where are you from?", "fil": "Taga saan ka?", "ini": "Taga diin ka?", "onh": "Taga diin kaw?", "asi": "Taga riin ka?"}
+  ]
+}

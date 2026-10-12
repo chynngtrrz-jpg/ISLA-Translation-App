@@ -20,7 +20,7 @@
   "@selectLanguage": {
     "description": "Screen: Language Selection"
   },
-  "appSubtitle": "Language Translation",
+  "appSubtitle": "Every island's voice, kept by choice.",
   "@appSubtitle": {
     "description": "Shared: App Bar"
   },

@@ -27,6 +27,7 @@ class LocaleProvider extends ChangeNotifier {
         locale.languageCode == 'tl' ||
         locale.languageCode == 'rol' ||
         locale.languageCode == 'bno' ||
+        // Onhan UI strings live in lib/l10n/app_loc.arb.
         locale.languageCode == 'loc';
     _locale = _supportedLocale(locale.languageCode);
     _hasExplicitSelection = isSupported;

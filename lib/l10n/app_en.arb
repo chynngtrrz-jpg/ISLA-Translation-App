@@ -4,6 +4,14 @@
   "@getStarted": {
     "description": "Screen: Landing"
   },
+  "landingMascotSemantics": "ISLA mascot",
+  "@landingMascotSemantics": {
+    "description": "Screen: Landing (image semantics)"
+  },
+  "landingLogoSemantics": "ISLA logo",
+  "@landingLogoSemantics": {
+    "description": "Screen: Landing (image semantics)"
+  },
   "languageSelectionTitle": "Choose your language",
   "@languageSelectionTitle": {
     "description": "Screen: Language Selection"
@@ -20,9 +28,13 @@
   "@selectLanguage": {
     "description": "Screen: Language Selection"
   },
-  "appSubtitle": "Language Translation",
+  "appSubtitle": "Every island's voice, kept by choice.",
   "@appSubtitle": {
     "description": "Shared: App Bar"
+  },
+  "appBarMascotSemantics": "ISLA mascot",
+  "@appBarMascotSemantics": {
+    "description": "Shared: App Bar (image semantics)"
   },
   "welcomeTitle": "Welcome to ISLA",
   "@welcomeTitle": {
@@ -348,5 +360,21 @@
   "startOver": "Start Over",
   "@startOver": {
     "description": "Screen: Result"
+  },
+  "resultNotFound": "No translation found for this phrase.",
+  "@resultNotFound": {
+    "description": "Screen: Input and Translate, shown when the phrasebook has no match"
+  },
+  "resultSuggestionsLabel": "Try one of these:",
+  "@resultSuggestionsLabel": {
+    "description": "Screen: Input and Translate, label above suggested phrases"
+  },
+  "resultSourcePhrasebook": "From phrasebook",
+  "@resultSourcePhrasebook": {
+    "description": "Screen: Result, translation came from the phrasebook"
+  },
+  "resultSourceModel": "From model",
+  "@resultSourceModel": {
+    "description": "Screen: Result, translation came from the model"
   }
 }

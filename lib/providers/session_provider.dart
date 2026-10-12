@@ -4,6 +4,7 @@ import '../core/constants/app_config.dart';
 import '../core/constants/languages.dart';
 import '../data/models/translation_result.dart';
 import '../data/services/mock_translator_service.dart';
+import '../data/services/phrasebook_translator_service.dart';
 import '../data/services/translator_service.dart';
 
 /// Holds the language pair and transient translation input for one session.
@@ -25,6 +26,8 @@ class SessionProvider extends ChangeNotifier {
   TranslationResult? result;
   bool isTranslating = false;
   String? errorKey;
+  bool notFound = false;
+  List<String> suggestions = const [];
   bool get isModelReady => _translator.isReady;
   bool get isValid => supportsPair(sourceId, targetId);
 
@@ -96,6 +99,8 @@ class SessionProvider extends ChangeNotifier {
 
     isTranslating = true;
     errorKey = null;
+    notFound = false;
+    suggestions = const [];
     notifyListeners();
     try {
       final source = languages.firstWhere((language) => language.id == sourceId);
@@ -106,6 +111,10 @@ class SessionProvider extends ChangeNotifier {
         target: target,
       );
       resultText = result!.text;
+    } on PhraseNotFoundException catch (error) {
+      _clearResult();
+      notFound = true;
+      suggestions = error.suggestions;
     } catch (error, stackTrace) {
       debugPrint('Translation failed: $error\n$stackTrace');
       errorKey = 'common.error';
@@ -127,6 +136,8 @@ class SessionProvider extends ChangeNotifier {
   void _clearResult() {
     result = null;
     resultText = '';
+    notFound = false;
+    suggestions = const [];
   }
 
   void reset() {

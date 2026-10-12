@@ -7,6 +7,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_bno.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_loc.dart';
 import 'app_localizations_rol.dart';
 import 'app_localizations_tl.dart';
 
@@ -98,6 +99,7 @@ abstract class AppLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('bno'),
     Locale('en'),
+    Locale('loc'),
     Locale('rol'),
     Locale('tl')
   ];
@@ -107,6 +109,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Get Started'**
   String get getStarted;
+
+  /// Screen: Landing (image semantics)
+  ///
+  /// In en, this message translates to:
+  /// **'ISLA mascot'**
+  String get landingMascotSemantics;
+
+  /// Screen: Landing (image semantics)
+  ///
+  /// In en, this message translates to:
+  /// **'ISLA logo'**
+  String get landingLogoSemantics;
 
   /// Screen: Language Selection
   ///
@@ -135,8 +149,14 @@ abstract class AppLocalizations {
   /// Shared: App Bar
   ///
   /// In en, this message translates to:
-  /// **'Language Translation'**
+  /// **'Every island\'s voice, kept by choice.'**
   String get appSubtitle;
+
+  /// Shared: App Bar (image semantics)
+  ///
+  /// In en, this message translates to:
+  /// **'ISLA mascot'**
+  String get appBarMascotSemantics;
 
   /// Shared: Welcome Banner
   ///
@@ -575,6 +595,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start Over'**
   String get startOver;
+
+  /// Screen: Input and Translate, shown when the phrasebook has no match
+  ///
+  /// In en, this message translates to:
+  /// **'No translation found for this phrase.'**
+  String get resultNotFound;
+
+  /// Screen: Input and Translate, label above suggested phrases
+  ///
+  /// In en, this message translates to:
+  /// **'Try one of these:'**
+  String get resultSuggestionsLabel;
+
+  /// Screen: Result, translation came from the phrasebook
+  ///
+  /// In en, this message translates to:
+  /// **'From phrasebook'**
+  String get resultSourcePhrasebook;
+
+  /// Screen: Result, translation came from the model
+  ///
+  /// In en, this message translates to:
+  /// **'From model'**
+  String get resultSourceModel;
 }
 
 class _AppLocalizationsDelegate
@@ -588,7 +632,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['bno', 'en', 'rol', 'tl'].contains(locale.languageCode);
+      <String>['bno', 'en', 'loc', 'rol', 'tl'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -601,6 +645,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsBno();
     case 'en':
       return AppLocalizationsEn();
+    case 'loc':
+      return AppLocalizationsLoc();
     case 'rol':
       return AppLocalizationsRol();
     case 'tl':

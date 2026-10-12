@@ -5,7 +5,7 @@
   "languageSelectionDescription": "Piliin ang wikang pinakakomportable kayong gamitin.",
   "languageSelectionChangeNote": "Maaari ninyong palitan ang wika anumang oras habang ginagamit ang app.",
   "selectLanguage": "Piliin",
-  "appSubtitle": "Pagsasalin ng Wika",
+  "appSubtitle": "Every island's voice, kept by choice.",
   "welcomeTitle": "Welcome to ISLA",
   "selectLanguagesBanner": "Piliin ang mga wika, pagkatapos ay pindutin ang \"Susunod\" upang ilagay ang inyong mensahe.",
   "inputTextBanner": "Isulat ang iyong mensahe, pagkatapos ay pindutin ang Isalin.",
@@ -127,5 +127,9 @@
   "noTranslationYet": "Wala pang salin",
   "backToInput": "Bumalik sa Paglalagay",
   "translateAnother": "Magsalin Pa",
-  "startOver": "Magsimula Muli"
+  "startOver": "Magsimula Muli",
+  "resultNotFound": "Walang nahanap na salin para sa pariralang ito.",
+  "resultSuggestionsLabel": "Subukan ang isa sa mga ito:",
+  "resultSourcePhrasebook": "Mula sa phrasebook",
+  "resultSourceModel": "Mula sa model"
 }

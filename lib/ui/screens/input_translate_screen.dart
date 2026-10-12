@@ -810,6 +810,10 @@ class _InputTranslateScreenState extends State<InputTranslateScreen>
           ),
         ),
       ],
+      if (session.notFound) ...[
+        SizedBox(height: Responsive.space(context, 8)),
+        _buildNotFound(context, session, app),
+      ],
       if (session.errorKey != null) ...[
         SizedBox(height: Responsive.space(context, 8)),
         Semantics(
@@ -865,6 +869,100 @@ class _InputTranslateScreenState extends State<InputTranslateScreen>
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: inputControls,
           ),
+        ],
+      ),
+    );
+  }
+
+  /// Puts a suggested phrase into the message field without translating.
+  void _applySuggestion(String phrase) {
+    _messageController.value = applyInsert(
+      const TextEditingValue(
+        text: '',
+        selection: TextSelection.collapsed(offset: 0),
+      ),
+      phrase,
+      kMaxChars,
+    );
+    _messageFocusNode.requestFocus();
+  }
+
+  Widget _buildNotFound(
+    BuildContext context,
+    SessionProvider session,
+    AppLocalizations app,
+  ) {
+    final showSuggestions = kShowSuggestions && session.suggestions.isNotEmpty;
+    return Semantics(
+      liveRegion: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.info_outline,
+                color: AppColors.espresso,
+                size: Responsive.sp(context, 18),
+              ),
+              SizedBox(width: Responsive.space(context, 6)),
+              Expanded(
+                child: Text(
+                  app.resultNotFound,
+                  style: TextStyle(
+                    color: AppColors.espresso,
+                    fontSize: Responsive.sp(context, 14),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          if (showSuggestions) ...[
+            SizedBox(height: Responsive.space(context, 8)),
+            Text(
+              app.resultSuggestionsLabel,
+              style: TextStyle(
+                color: AppColors.espresso,
+                fontSize: Responsive.sp(context, 14),
+              ),
+            ),
+            SizedBox(height: Responsive.space(context, 8)),
+            Wrap(
+              spacing: Responsive.space(context, 8),
+              runSpacing: Responsive.space(context, 8),
+              children: [
+                for (final phrase in session.suggestions.take(kMaxSuggestions))
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: Responsive.space(context, 48),
+                    ),
+                    child: Material(
+                      color: AppColors.glacier,
+                      shape: const StadiumBorder(),
+                      child: InkWell(
+                        onTap: () => _applySuggestion(phrase),
+                        customBorder: const StadiumBorder(),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: Responsive.space(context, 16),
+                            vertical: Responsive.space(context, 12),
+                          ),
+                          child: Text(
+                            phrase,
+                            style: TextStyle(
+                              color: AppColors.espresso,
+                              fontSize: Responsive.sp(context, 14),
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ],
         ],
       ),
     );
