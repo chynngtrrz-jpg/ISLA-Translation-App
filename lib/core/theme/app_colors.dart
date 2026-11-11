@@ -12,4 +12,6 @@ abstract final class AppColors {
   static const Color surface = Color(0xFFFFFFFF);
   // White text on the Onhan card is the specified large-text contrast exception.
   static const Color onClay = Color(0xFFFFFFFF);
+  // Sampled from the landing mockup, used for the tagline.
+  static const Color islaBlue = Color(0xFF004CA8);
 }

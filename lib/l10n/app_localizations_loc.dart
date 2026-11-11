@@ -191,9 +191,12 @@ class AppLocalizationsLoc extends AppLocalizations {
   String get voiceProcessing => 'Processing...';
 
   @override
-  String voiceUnavailable(Object language) {
-    return 'Voice input is not available for $language.';
+  String voicePackMissing(Object language) {
+    return 'Offline $language speech recognition is not installed on this device. Install it in Android settings, then try again.';
   }
+
+  @override
+  String get statusOfflineReady => 'Offline ready';
 
   @override
   String get voicePermissionDenied => 'Microphone permission is required.';
@@ -279,16 +282,4 @@ class AppLocalizationsLoc extends AppLocalizations {
 
   @override
   String get startOver => 'Liwat';
-
-  @override
-  String get resultNotFound => 'No translation found for this phrase.';
-
-  @override
-  String get resultSuggestionsLabel => 'Try one of these:';
-
-  @override
-  String get resultSourcePhrasebook => 'From phrasebook';
-
-  @override
-  String get resultSourceModel => 'From model';
 }

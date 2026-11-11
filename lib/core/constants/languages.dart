@@ -1,6 +1,10 @@
 import '../../data/models/language.dart';
 import '../theme/app_colors.dart';
 
+// No native recognizer exists for ini, onh, and asi, so the Filipino
+// recognizer is used as the closest available engine.
+const String _fallbackSttLocale = 'fil_PH';
+
 /// Editable list of interface-language choices shown on the selection screen.
 const List<Language> languages = [
   Language(
@@ -31,6 +35,7 @@ const List<Language> languages = [
     fillColor: AppColors.glacier,
     textColor: AppColors.espresso,
     borderColor: AppColors.chambray,
+    sttFallbackLocale: _fallbackSttLocale,
     ttsLocale: 'fil-PH',
     ttsApproximate: true,
   ),
@@ -41,6 +46,7 @@ const List<Language> languages = [
     greeting: 'Maayong Adlaw!',
     fillColor: AppColors.clay,
     textColor: AppColors.onClay,
+    sttFallbackLocale: _fallbackSttLocale,
     ttsLocale: 'fil-PH',
     ttsApproximate: true,
   ),
@@ -51,6 +57,7 @@ const List<Language> languages = [
     greeting: 'Maado nga Adlaw!',
     fillColor: AppColors.espresso,
     textColor: AppColors.bisque,
+    sttFallbackLocale: _fallbackSttLocale,
     ttsLocale: 'fil-PH',
     ttsApproximate: true,
   ),

@@ -13,6 +13,14 @@ import '../widgets/language_card.dart';
 class LanguageSelectionScreen extends StatelessWidget {
   const LanguageSelectionScreen({super.key});
 
+  void _goBack(BuildContext context) {
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+    } else {
+      Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+    }
+  }
+
   Future<void> _selectLanguage(
     BuildContext context,
     String languageId,
@@ -43,7 +51,7 @@ class LanguageSelectionScreen extends StatelessWidget {
       backgroundColor: AppColors.canvas,
       body: Column(
         children: [
-          const IslaAppBar(),
+          IslaAppBar(onBack: () => _goBack(context)),
           Expanded(
             child: SafeArea(
               top: false,

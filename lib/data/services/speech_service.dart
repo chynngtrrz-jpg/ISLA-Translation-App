@@ -7,6 +7,7 @@ abstract interface class SpeechService {
   });
   Future<void> listen({
     required String localeId,
+    required bool onDevice,
     required void Function(String text, bool isFinal) onResult,
     required void Function(String error) onError,
   });
@@ -40,6 +41,7 @@ class DeviceSpeechService implements SpeechService {
   @override
   Future<void> listen({
     required String localeId,
+    required bool onDevice,
     required void Function(String text, bool isFinal) onResult,
     required void Function(String error) onError,
   }) async {
@@ -50,8 +52,10 @@ class DeviceSpeechService implements SpeechService {
       return;
     }
     await _speech.listen(
-      listenOptions: SpeechListenOptions(localeId: localeId, onDevice: false),
-      onResult: (result) => onResult(result.recognizedWords, result.finalResult),
+      listenOptions:
+          SpeechListenOptions(localeId: localeId, onDevice: onDevice),
+      onResult: (result) =>
+          onResult(result.recognizedWords, result.finalResult),
     );
   }
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../../core/constants/app_config.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../data/models/translation_result.dart';
@@ -109,18 +108,6 @@ class TranslationResultCard extends StatelessWidget {
             ],
           ),
         ),
-        if (kShowResultSource) ...[
-          SizedBox(height: Responsive.space(context, 8)),
-          Text(
-            result.origin == TranslationOrigin.phrasebook
-                ? app.resultSourcePhrasebook
-                : app.resultSourceModel,
-            style: TextStyle(
-              color: AppColors.espresso,
-              fontSize: Responsive.sp(context, 14),
-            ),
-          ),
-        ],
       ],
     );
   }

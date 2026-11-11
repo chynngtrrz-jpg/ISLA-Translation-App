@@ -7,10 +7,11 @@ import '../../core/utils/responsive.dart';
 
 /// ISLA brand bar with status-bar inset, logo placeholder, and wordmark.
 class IslaAppBar extends StatelessWidget {
-  const IslaAppBar({this.subtitle, this.trailing, super.key});
+  const IslaAppBar({this.subtitle, this.trailing, this.onBack, super.key});
 
   final String? subtitle;
   final Widget? trailing;
+  final VoidCallback? onBack;
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +104,25 @@ class IslaAppBar extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: trailing!,
+                  ),
+                ),
+              if (onBack != null)
+                Positioned.fill(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      tooltip: 'Back',
+                      onPressed: onBack,
+                      constraints: const BoxConstraints(
+                        minWidth: 48,
+                        minHeight: 48,
+                      ),
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: AppColors.glacier,
+                        size: Responsive.sp(context, 24),
+                      ),
+                    ),
                   ),
                 ),
             ],

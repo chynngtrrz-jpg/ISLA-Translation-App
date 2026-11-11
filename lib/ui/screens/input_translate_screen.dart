@@ -30,6 +30,7 @@ import '../widgets/welcome_banner.dart';
 enum _InputError {
   common,
   voicePermissionDenied,
+  voicePackMissing,
   cameraPermissionDenied,
   voicePermissionPermanentlyDenied,
   cameraPermissionPermanentlyDenied,
@@ -102,7 +103,8 @@ class _InputTranslateScreenState extends State<InputTranslateScreen>
   void didChangeDependencies() {
     super.didChangeDependencies();
     final session = context.read<SessionProvider>();
-    if (!_initializedController) {
+    if (!_initializedController ||
+        _messageController.text != session.inputText) {
       _updatingController = true;
       _messageController.text = session.inputText;
       _updatingController = false;
@@ -191,7 +193,7 @@ class _InputTranslateScreenState extends State<InputTranslateScreen>
 
   Future<void> _checkSpeechAvailability() async {
     final source = _languageFor(context.read<SessionProvider>().sourceId);
-    if (source.sttLocale == null) {
+    if (source.effectiveSttLocale == null) {
       setState(() => _speechAvailable = false);
       return;
     }
@@ -243,7 +245,7 @@ class _InputTranslateScreenState extends State<InputTranslateScreen>
 
   Future<void> _toggleListening() async {
     final source = _languageFor(context.read<SessionProvider>().sourceId);
-    if (source.sttLocale == null || !_speechAvailable) return;
+    if (source.effectiveSttLocale == null || !_speechAvailable) return;
     if (_listening) {
       await _stopListening();
       return;
@@ -255,7 +257,8 @@ class _InputTranslateScreenState extends State<InputTranslateScreen>
     });
     try {
       await _speechService.listen(
-        localeId: source.sttLocale!,
+        localeId: source.effectiveSttLocale!,
+        onDevice: kSttOnDeviceOnly,
         onResult: (text, isFinal) {
           if (!mounted) return;
           final value = applyInsert(
@@ -325,11 +328,14 @@ class _InputTranslateScreenState extends State<InputTranslateScreen>
     final permissionError = lowerError.contains('permission') ||
         lowerError.contains('not-allowed') ||
         lowerError.contains('denied');
+    final packMissing = lowerError.contains('language');
     setState(() {
       _listening = false;
       _voiceError = permissionError
           ? _InputError.voicePermissionDenied
-          : _InputError.common;
+          : packMissing
+              ? _InputError.voicePackMissing
+              : _InputError.common;
     });
   }
 
@@ -731,9 +737,10 @@ class _InputTranslateScreenState extends State<InputTranslateScreen>
       'camera' => app.inputLabelRecognized,
       _ => app.inputLabelText,
     };
-    final voiceAvailable = source.sttLocale != null && _speechAvailable;
+    final voiceAvailable =
+        source.effectiveSttLocale != null && _speechAvailable;
     final canTranslate = session.inputText.trim().isNotEmpty &&
-        session.isModelReady &&
+        session.isReady &&
         !session.isTranslating;
 
     final inputControls = <Widget>[
@@ -800,20 +807,6 @@ class _InputTranslateScreenState extends State<InputTranslateScreen>
         translating: session.isTranslating,
         onPressed: () => _translateAndShowResult(session),
       ),
-      if (!session.isModelReady) ...[
-        SizedBox(height: Responsive.space(context, 8)),
-        Text(
-          app.statusModelLoading,
-          style: TextStyle(
-            color: AppColors.clay,
-            fontSize: Responsive.sp(context, 14),
-          ),
-        ),
-      ],
-      if (session.notFound) ...[
-        SizedBox(height: Responsive.space(context, 8)),
-        _buildNotFound(context, session, app),
-      ],
       if (session.errorKey != null) ...[
         SizedBox(height: Responsive.space(context, 8)),
         Semantics(
@@ -874,103 +867,17 @@ class _InputTranslateScreenState extends State<InputTranslateScreen>
     );
   }
 
-  /// Puts a suggested phrase into the message field without translating.
-  void _applySuggestion(String phrase) {
-    _messageController.value = applyInsert(
-      const TextEditingValue(
-        text: '',
-        selection: TextSelection.collapsed(offset: 0),
-      ),
-      phrase,
-      kMaxChars,
-    );
-    _messageFocusNode.requestFocus();
-  }
-
-  Widget _buildNotFound(
-    BuildContext context,
-    SessionProvider session,
-    AppLocalizations app,
-  ) {
-    final showSuggestions = kShowSuggestions && session.suggestions.isNotEmpty;
-    return Semantics(
-      liveRegion: true,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Icon(
-                Icons.info_outline,
-                color: AppColors.espresso,
-                size: Responsive.sp(context, 18),
-              ),
-              SizedBox(width: Responsive.space(context, 6)),
-              Expanded(
-                child: Text(
-                  app.resultNotFound,
-                  style: TextStyle(
-                    color: AppColors.espresso,
-                    fontSize: Responsive.sp(context, 14),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          if (showSuggestions) ...[
-            SizedBox(height: Responsive.space(context, 8)),
-            Text(
-              app.resultSuggestionsLabel,
-              style: TextStyle(
-                color: AppColors.espresso,
-                fontSize: Responsive.sp(context, 14),
-              ),
-            ),
-            SizedBox(height: Responsive.space(context, 8)),
-            Wrap(
-              spacing: Responsive.space(context, 8),
-              runSpacing: Responsive.space(context, 8),
-              children: [
-                for (final phrase in session.suggestions.take(kMaxSuggestions))
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: Responsive.space(context, 48),
-                    ),
-                    child: Material(
-                      color: AppColors.glacier,
-                      shape: const StadiumBorder(),
-                      child: InkWell(
-                        onTap: () => _applySuggestion(phrase),
-                        customBorder: const StadiumBorder(),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: Responsive.space(context, 16),
-                            vertical: Responsive.space(context, 12),
-                          ),
-                          child: Text(
-                            phrase,
-                            style: TextStyle(
-                              color: AppColors.espresso,
-                              fontSize: Responsive.sp(context, 14),
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
   String _voiceErrorText(AppLocalizations app) {
     return switch (_voiceError!) {
       _InputError.voicePermissionDenied => app.voicePermissionDenied,
+      _InputError.voicePackMissing => app.voicePackMissing(
+          (_languageFor(context.read<SessionProvider>().sourceId)
+                          .effectiveSttLocale ??
+                      '')
+                  .startsWith('fil')
+              ? 'Filipino'
+              : 'English',
+        ),
       _InputError.voicePermissionPermanentlyDenied =>
         app.voicePermissionPermanentlyDenied,
       _ => app.commonError,

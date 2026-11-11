@@ -11,6 +11,7 @@ import 'package:isla_app/data/services/tts_service.dart';
 import 'package:isla_app/providers/session_provider.dart';
 import 'package:isla_app/core/theme/app_colors.dart';
 import 'package:isla_app/ui/screens/view_result_screen.dart';
+import 'package:isla_app/ui/screens/input_translate_screen.dart';
 import 'package:isla_app/ui/widgets/isla_app_bar.dart';
 import 'package:isla_app/ui/widgets/translation_result_card.dart';
 
@@ -26,6 +27,23 @@ class _Translator implements TranslatorService {
   }) async =>
       const TranslationResult(
         text: 'Maayong aga.',
+        confidence: 0.86,
+        latencyMs: 10,
+      );
+}
+
+class _EchoTranslator implements TranslatorService {
+  @override
+  bool isReady = true;
+
+  @override
+  Future<TranslationResult> translate({
+    required String text,
+    required Language source,
+    required Language target,
+  }) async =>
+      TranslationResult(
+        text: '$text translated',
         confidence: 0.86,
         latencyMs: 10,
       );
@@ -79,7 +97,7 @@ Future<SessionProvider> _translatedSession() async {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('shows original and translated text with step three active',
+  testWidgets('shows original and translated text with step three complete',
       (tester) async {
     final session = await _translatedSession();
     await tester.pumpWidget(
@@ -106,7 +124,7 @@ void main() {
     final completedStepTwo = tester.widget<Container>(
       find.byKey(const ValueKey('step-circle-2')),
     );
-    final activeStepThree = tester.widget<Container>(
+    final completedStepThree = tester.widget<Container>(
       find.byKey(const ValueKey('step-circle-3')),
     );
     expect(
@@ -118,9 +136,23 @@ void main() {
       AppColors.chambray,
     );
     expect(
-      (activeStepThree.decoration! as BoxDecoration).color,
-      AppColors.espresso,
+      (completedStepThree.decoration! as BoxDecoration).color,
+      AppColors.chambray,
     );
+    expect(
+      find.descendant(
+        of: find.byKey(const ValueKey('step-circle-3')),
+        matching: find.byIcon(Icons.check),
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('3'), findsNothing);
+    for (var connector = 1; connector < 3; connector++) {
+      final line = tester.widget<Container>(
+        find.byKey(ValueKey('step-connector-$connector')),
+      );
+      expect(line.color, AppColors.chambray);
+    }
   });
 
   testWidgets('result banner stays near the top of a tall phone screen',
@@ -147,26 +179,65 @@ void main() {
     expect(startOverBottom, greaterThan(tester.view.physicalSize.height * 0.9));
   });
 
-  testWidgets('Translate Another returns to input and retains session data',
+  testWidgets('Translate Another clears input and result, retaining languages',
       (tester) async {
-    final session = await _translatedSession();
+    final session = SessionProvider(translator: _EchoTranslator())
+      ..setSource('fil')
+      ..setTarget('asi')
+      ..setInputText('Maayong adlaw');
     await tester.pumpWidget(
       _testApp(
         session: session,
-        home: ViewResultScreen(ttsService: _Tts()),
+        home: const InputTranslateScreen(),
+        routes: {
+          '/view-result': (_) => ViewResultScreen(ttsService: _Tts()),
+        },
       ),
     );
     await tester.pumpAndSettle();
+
+    final translateButton = find.ancestor(
+      of: find.text('Translate'),
+      matching: find.byType(InkWell),
+    );
+    await tester.ensureVisible(translateButton);
+    await tester.tap(translateButton);
+    await tester.pumpAndSettle();
+    expect(find.text('Maayong adlaw translated'), findsOneWidget);
 
     await tester.ensureVisible(find.text('Translate Another'));
     await tester.tap(find.text('Translate Another'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Input screen'), findsOneWidget);
+    expect(find.byType(InputTranslateScreen), findsOneWidget);
     expect(session.sourceId, 'fil');
     expect(session.targetId, 'asi');
-    expect(session.inputText, 'Maayong adlaw');
-    expect(session.result?.text, 'Maayong aga.');
+    expect(session.inputText, isEmpty);
+    expect(session.result, isNull);
+    expect(session.resultText, isEmpty);
+    expect(tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        isEmpty);
+    expect(find.text('Maayong adlaw translated'), findsNothing);
+    expect(
+      tester
+          .widget<InkWell>(
+            find.ancestor(
+              of: find.text('Translate'),
+              matching: find.byType(InkWell),
+            ),
+          )
+          .onTap,
+      isNull,
+    );
+
+    session.setInputText('Second translation');
+    await session.translate();
+    Navigator.of(tester.element(find.byType(InputTranslateScreen)))
+        .pushNamed('/view-result');
+    await tester.pumpAndSettle();
+    expect(find.text('Second translation translated'), findsOneWidget);
+    expect(find.text('Maayong adlaw translated'), findsNothing);
+    expect(session.result?.text, 'Second translation translated');
   });
 
   testWidgets('Start Over resets session and returns to language pair screen',
@@ -204,6 +275,14 @@ void main() {
     expect(find.text('No translation yet'), findsOneWidget);
     expect(find.text('Back to Input'), findsOneWidget);
     expect(find.byType(TranslationResultCard), findsNothing);
+    final activeStepThree = tester.widget<Container>(
+      find.byKey(const ValueKey('step-circle-3')),
+    );
+    expect(
+      (activeStepThree.decoration! as BoxDecoration).color,
+      AppColors.espresso,
+    );
+    expect(find.text('3'), findsOneWidget);
 
     await tester.ensureVisible(find.text('Back to Input'));
     await tester.tap(find.text('Back to Input'));

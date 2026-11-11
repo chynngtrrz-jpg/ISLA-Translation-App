@@ -62,6 +62,45 @@ void main() {
     expect(find.text('Choose your language'), findsOneWidget);
   });
 
+  testWidgets('language selection back returns to landing at phone and desktop',
+      (tester) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(400, 844);
+    await tester.pumpWidget(await buildApp());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Get Started'));
+    await tester.pumpAndSettle();
+    expect(find.text('Choose your language'), findsOneWidget);
+    expect(find.byTooltip('Back'), findsOneWidget);
+    expect(
+      tester.getSize(find.byTooltip('Back')).width,
+      greaterThanOrEqualTo(48),
+    );
+    expect(
+      tester.getSize(find.byTooltip('Back')).height,
+      greaterThanOrEqualTo(48),
+    );
+
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
+    expect(find.text('Get Started'), findsOneWidget);
+
+    await tester.tap(find.text('Get Started'));
+    await tester.pumpAndSettle();
+    tester.view.physicalSize = const Size(1280, 900);
+    await tester.pumpAndSettle();
+    expect(find.text('Choose your language'), findsOneWidget);
+    expect(find.byTooltip('Back'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
+    expect(find.text('Get Started'), findsOneWidget);
+
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+  });
+
   testWidgets('Get Started label follows the selected UI locale',
       (tester) async {
     for (final testCase in [

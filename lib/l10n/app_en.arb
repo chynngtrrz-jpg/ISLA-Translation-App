@@ -247,11 +247,15 @@
   "@voiceProcessing": {
     "description": "Screen: Input and Translate"
   },
-  "voiceUnavailable": "Voice input is not available for {language}.",
-  "@voiceUnavailable": {
+  "voicePackMissing": "Offline {language} speech recognition is not installed on this device. Install it in Android settings, then try again.",
+  "@voicePackMissing": {
     "placeholders": {
       "language": {}
     },
+    "description": "Screen: Input and Translate"
+  },
+  "statusOfflineReady": "Offline ready",
+  "@statusOfflineReady": {
     "description": "Screen: Input and Translate"
   },
   "voicePermissionDenied": "Microphone permission is required.",
@@ -360,21 +364,5 @@
   "startOver": "Start Over",
   "@startOver": {
     "description": "Screen: Result"
-  },
-  "resultNotFound": "No translation found for this phrase.",
-  "@resultNotFound": {
-    "description": "Screen: Input and Translate, shown when the phrasebook has no match"
-  },
-  "resultSuggestionsLabel": "Try one of these:",
-  "@resultSuggestionsLabel": {
-    "description": "Screen: Input and Translate, label above suggested phrases"
-  },
-  "resultSourcePhrasebook": "From phrasebook",
-  "@resultSourcePhrasebook": {
-    "description": "Screen: Result, translation came from the phrasebook"
-  },
-  "resultSourceModel": "From model",
-  "@resultSourceModel": {
-    "description": "Screen: Result, translation came from the model"
   }
 }

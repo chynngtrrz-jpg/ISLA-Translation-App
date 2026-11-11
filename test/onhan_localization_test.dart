@@ -55,6 +55,7 @@ class _Speech implements SpeechService {
   @override
   Future<void> listen({
     required String localeId,
+    required bool onDevice,
     required void Function(String text, bool isFinal) onResult,
     required void Function(String error) onError,
   }) async {}

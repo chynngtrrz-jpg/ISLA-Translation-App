@@ -194,9 +194,12 @@ class AppLocalizationsTl extends AppLocalizations {
   String get voiceProcessing => 'Pinoproseso...';
 
   @override
-  String voiceUnavailable(Object language) {
-    return 'Hindi magagamit ang pag-input gamit ang boses para sa $language.';
+  String voicePackMissing(Object language) {
+    return 'Hindi naka-install sa device na ito ang offline na speech recognition para sa $language. I-install ito sa mga setting ng Android, pagkatapos ay subukan muli.';
   }
+
+  @override
+  String get statusOfflineReady => 'Handa na offline';
 
   @override
   String get voicePermissionDenied => 'Kailangan ang pahintulot sa mikropono.';
@@ -284,17 +287,4 @@ class AppLocalizationsTl extends AppLocalizations {
 
   @override
   String get startOver => 'Magsimula Muli';
-
-  @override
-  String get resultNotFound =>
-      'Walang nahanap na salin para sa pariralang ito.';
-
-  @override
-  String get resultSuggestionsLabel => 'Subukan ang isa sa mga ito:';
-
-  @override
-  String get resultSourcePhrasebook => 'Mula sa phrasebook';
-
-  @override
-  String get resultSourceModel => 'Mula sa model';
 }

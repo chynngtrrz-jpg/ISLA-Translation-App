@@ -91,12 +91,14 @@
   "voiceIdle": "Pindutin para magsalita",
   "voiceListening": "Nakikinig...",
   "voiceProcessing": "Pinoproseso...",
-  "voiceUnavailable": "Hindi magagamit ang pag-input gamit ang boses para sa {language}.",
-  "@voiceUnavailable": {
+  "voicePackMissing": "Hindi naka-install sa device na ito ang offline na speech recognition para sa {language}. I-install ito sa mga setting ng Android, pagkatapos ay subukan muli.",
+  "@voicePackMissing": {
     "placeholders": {
       "language": {}
-    }
+    },
+    "description": "Screen: Input and Translate"
   },
+  "statusOfflineReady": "Handa na offline",
   "voicePermissionDenied": "Kailangan ang pahintulot sa mikropono.",
   "voicePermissionPermanentlyDenied": "Naka-block ang mikropono. Paganahin ito sa mga setting ng app.",
   "cameraCapture": "Kunan ng larawan",
@@ -127,9 +129,5 @@
   "noTranslationYet": "Wala pang salin",
   "backToInput": "Bumalik sa Paglalagay",
   "translateAnother": "Magsalin Pa",
-  "startOver": "Magsimula Muli",
-  "resultNotFound": "Walang nahanap na salin para sa pariralang ito.",
-  "resultSuggestionsLabel": "Subukan ang isa sa mga ito:",
-  "resultSourcePhrasebook": "Mula sa phrasebook",
-  "resultSourceModel": "Mula sa model"
+  "startOver": "Magsimula Muli"
 }

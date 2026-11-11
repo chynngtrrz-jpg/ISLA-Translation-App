@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../../core/constants/app_config.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 
 /// Non-interactive, accessible progress indicator for the three app steps.
 class StepIndicator extends StatelessWidget {
-  const StepIndicator({required this.currentStep, super.key});
+  const StepIndicator({
+    required this.currentStep,
+    this.hasTranslationResult = false,
+    super.key,
+  });
 
   final int currentStep;
+  final bool hasTranslationResult;
 
   @override
   Widget build(BuildContext context) {
@@ -20,28 +24,30 @@ class StepIndicator extends StatelessWidget {
       app.stepInputTranslate,
       app.stepViewResult,
     ];
+    final lastStep = labels.length;
     Widget buildStep(int index) {
       final step = index + 1;
-      final completed = step < currentStep;
-      final current = step == currentStep;
+      final completed = step < currentStep ||
+          (step == lastStep && hasTranslationResult);
+      final current = step == currentStep && !completed;
       return Expanded(
         child: Semantics(
           container: true,
           label: completed
               ? app.stepSemanticsCompleted(
                   '$step',
-                  '$translationStepCount',
+                  '$lastStep',
                   labels[index],
                 )
               : current
                   ? app.stepSemanticsCurrent(
                       '$step',
-                      '$translationStepCount',
+                      '$lastStep',
                       labels[index],
                     )
                   : app.stepSemanticsUpcoming(
                       '$step',
-                      '$translationStepCount',
+                      '$lastStep',
                       labels[index],
                     ),
           child: Column(
@@ -108,19 +114,23 @@ class StepIndicator extends StatelessWidget {
           width: double.infinity,
           child: Stack(
             children: [
-              Positioned(
-                left: constraints.maxWidth / 6,
-                right: constraints.maxWidth / 6,
-                top: Responsive.space(context, 15),
-                child: Container(
-                  height: Responsive.space(context, 2),
-                  color: AppColors.clay,
+              for (var index = 0; index < labels.length - 1; index++)
+                Positioned(
+                  left: constraints.maxWidth * (index + 0.5) / labels.length,
+                  width: constraints.maxWidth / labels.length,
+                  top: Responsive.space(context, 15),
+                  child: Container(
+                    key: ValueKey('step-connector-${index + 1}'),
+                    height: Responsive.space(context, 2),
+                    color: index + 1 < currentStep
+                        ? AppColors.chambray
+                        : AppColors.clay,
+                  ),
                 ),
-              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  for (var index = 0; index < translationStepCount; index++)
+                  for (var index = 0; index < labels.length; index++)
                     buildStep(index),
                 ],
               ),

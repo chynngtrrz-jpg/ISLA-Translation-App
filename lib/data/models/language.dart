@@ -11,6 +11,7 @@ class Language {
     required this.textColor,
     this.borderColor,
     this.sttLocale,
+    this.sttFallbackLocale,
     this.ttsLocale,
     this.ttsApproximate = false,
   });
@@ -23,6 +24,10 @@ class Language {
   final Color textColor;
   final Color? borderColor;
   final String? sttLocale;
+  final String? sttFallbackLocale;
   final String? ttsLocale;
   final bool ttsApproximate;
+
+  /// Recognizer locale used for voice input, or null if voice is unsupported.
+  String? get effectiveSttLocale => sttLocale ?? sttFallbackLocale;
 }

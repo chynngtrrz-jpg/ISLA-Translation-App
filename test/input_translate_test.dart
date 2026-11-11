@@ -36,6 +36,9 @@ class _FakeTranslator implements TranslatorService {
 class _FakeSpeech implements SpeechService {
   int stops = 0;
   int initializations = 0;
+  final List<String> localeIds = [];
+  final List<bool> onDeviceFlags = [];
+  String? listenError;
 
   @override
   Future<bool> initialize({
@@ -49,9 +52,14 @@ class _FakeSpeech implements SpeechService {
   @override
   Future<void> listen({
     required String localeId,
+    required bool onDevice,
     required void Function(String text, bool isFinal) onResult,
     required void Function(String error) onError,
-  }) async {}
+  }) async {
+    localeIds.add(localeId);
+    onDeviceFlags.add(onDevice);
+    if (listenError != null) onError(listenError!);
+  }
 
   @override
   Future<void> stop() async {
@@ -473,35 +481,78 @@ void main() {
     expect(permissions.settingsOpened, 1);
   });
 
-  testWidgets('Ini voice input is unavailable and the microphone is disabled',
-      (tester) async {
-    final session = SessionProvider()
-      ..initTranslationFlow()
-      ..setTarget('fil')
-      ..setSource('ini')
-      ..setTarget('en');
-    await tester.pumpWidget(
-      _testApp(
-        session: session,
-        screen: InputTranslateScreen(
-          speechService: _FakeSpeech(),
+  for (final entry in const {
+    'en': 'en_US',
+    'fil': 'fil_PH',
+    'ini': 'fil_PH',
+    'onh': 'fil_PH',
+    'asi': 'fil_PH',
+  }.entries) {
+    testWidgets('${entry.key} voice listens with ${entry.value} on-device',
+        (tester) async {
+      final session = SessionProvider()
+        ..initTranslationFlow()
+        ..setTarget(entry.key == 'fil' ? 'en' : 'fil')
+        ..setSource(entry.key);
+      final speech = _FakeSpeech();
+      await tester.pumpWidget(
+        _testApp(
+          session: session,
+          screen: InputTranslateScreen(
+            speechService: speech,
+            permissionService: _FakePermissions(),
+          ),
         ),
-      ),
-    );
-    await tester.ensureVisible(find.text('Voice').first);
-    await tester.tap(find.text('Voice').first);
-    await tester.pumpAndSettle();
+      );
+      await tester.ensureVisible(find.text('Voice').first);
+      await tester.tap(find.text('Voice').first);
+      await tester.pumpAndSettle();
 
-    expect(
-      find.text('Voice input is not available for Ini (Romblomanon).'),
-      findsOneWidget,
-    );
-    final mic = tester.widget<IconButton>(
-      find.widgetWithIcon(IconButton, Icons.mic),
-    );
-    expect(mic.onPressed, isNull);
-  });
+      for (final word in ['unavailable', 'approximate', 'not available']) {
+        expect(find.textContaining(word, findRichText: true), findsNothing);
+      }
+      final mic = tester.widget<IconButton>(
+        find.widgetWithIcon(IconButton, Icons.mic),
+      );
+      expect(mic.onPressed, isNotNull);
+      await tester.tap(find.widgetWithIcon(IconButton, Icons.mic));
+      await tester.pump();
 
+      expect(speech.localeIds, [entry.value]);
+      expect(speech.onDeviceFlags, [true]);
+    });
+  }
+
+  for (final source in ['ini', 'onh', 'asi']) {
+    testWidgets('missing pack message names Filipino for $source',
+        (tester) async {
+      final session = SessionProvider()
+        ..initTranslationFlow()
+        ..setTarget(source == 'ini' ? 'fil' : 'en')
+        ..setSource(source);
+      final speech = _FakeSpeech()..listenError = 'error_language_unavailable';
+      await tester.pumpWidget(
+        _testApp(
+          session: session,
+          screen: InputTranslateScreen(
+            speechService: speech,
+            permissionService: _FakePermissions(),
+          ),
+        ),
+      );
+      await tester.ensureVisible(find.text('Voice').first);
+      await tester.tap(find.text('Voice').first);
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithIcon(IconButton, Icons.mic));
+      await tester.pumpAndSettle();
+
+      expect(
+        find.text('Offline Filipino speech recognition is not installed on '
+            'this device. Install it in Android settings, then try again.'),
+        findsOneWidget,
+      );
+    });
+  }
   testWidgets('step indicator marks step one complete and step two current',
       (tester) async {
     await tester.pumpWidget(

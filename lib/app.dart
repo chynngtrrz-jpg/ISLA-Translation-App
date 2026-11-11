@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'l10n/app_localizations.dart';
 import 'l10n/fallback_localizations.dart';
+import 'core/constants/app_config.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
 import 'core/utils/responsive.dart';
@@ -108,6 +109,30 @@ class _LandingScreenState extends State<_LandingScreen> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              // Brand tagline above the mascot; not localized.
+                              ConstrainedBox(
+                                constraints:
+                                    const BoxConstraints(maxWidth: 420),
+                                child: Text(
+                                  kTagline,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  softWrap: true,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontFamily: 'Alegreya',
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.islaBlue,
+                                    fontSize: Responsive.sp(context, 20),
+                                    height: 1.25,
+                                    letterSpacing: 0,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: Responsive.space(context, 48),
+                              ),
                               Image(
                                 image: _mascot,
                                 width: mascotWidth,

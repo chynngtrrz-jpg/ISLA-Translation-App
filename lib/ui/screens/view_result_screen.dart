@@ -95,7 +95,12 @@ class _ViewResultScreenState extends State<ViewResultScreen> {
     if (mounted) setState(() => _speaking = false);
   }
 
-  void _translateAnother() {
+  void _translateAnother(SessionProvider session) {
+    session.clearInputAndResult();
+    _navigateToInput();
+  }
+
+  void _navigateToInput() {
     final navigator = Navigator.of(context);
     if (navigator.canPop()) {
       navigator.pop();
@@ -150,10 +155,13 @@ class _ViewResultScreenState extends State<ViewResultScreen> {
                         body: app.resultDescription,
                       ),
                       SizedBox(height: Responsive.space(context, 16)),
-                      const StepIndicator(currentStep: 3),
+                      StepIndicator(
+                        currentStep: 3,
+                        hasTranslationResult: result != null,
+                      ),
                       SizedBox(height: Responsive.space(context, 12)),
                       if (result == null)
-                        _NoResultCard(onBack: _translateAnother)
+                        _NoResultCard(onBack: _navigateToInput)
                       else ...[
                         _OriginalTextCard(
                           languageLabel: source.fieldLabel,
@@ -193,7 +201,7 @@ class _ViewResultScreenState extends State<ViewResultScreen> {
                         SizedBox(height: Responsive.space(context, 12)),
                         _ActionButton(
                           label: app.translateAnother,
-                          onPressed: _translateAnother,
+                          onPressed: () => _translateAnother(session),
                           backgroundColor: AppColors.chambray,
                         ),
                         SizedBox(height: Responsive.space(context, 12)),

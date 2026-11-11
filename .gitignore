@@ -42,7 +42,6 @@ credentials*.json
 *.onnx
 *.ckpt
 checkpoints/
-isla-nllb-en-tl/
 translation_sheet.csv
 .cache/
 runs/

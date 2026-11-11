@@ -235,11 +235,15 @@
   "@voiceProcessing": {
     "description": "Screen: Input and Translate"
   },
-  "voiceUnavailable": "Voice input is not available for {language}.",
-  "@voiceUnavailable": {
+  "voicePackMissing": "Offline {language} speech recognition is not installed on this device. Install it in Android settings, then try again.",
+  "@voicePackMissing": {
     "placeholders": {
       "language": {}
     },
+    "description": "Screen: Input and Translate"
+  },
+  "statusOfflineReady": "Offline ready",
+  "@statusOfflineReady": {
     "description": "Screen: Input and Translate"
   },
   "voicePermissionDenied": "Microphone permission is required.",

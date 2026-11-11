@@ -63,9 +63,7 @@ class _VoiceInputPanelState extends State<VoiceInputPanel>
         ? app.voiceProcessing
         : widget.listening
             ? app.voiceListening
-            : unavailable
-                ? app.voiceUnavailable(widget.languageLabel)
-                : app.voiceIdle;
+            : app.voiceIdle;
     return Column(
       children: [
         SizedBox(height: Responsive.space(context, 8)),
@@ -79,10 +77,8 @@ class _VoiceInputPanelState extends State<VoiceInputPanel>
                 AnimatedBuilder(
                   animation: _pulse,
                   builder: (context, child) => Container(
-                    width:
-                        Responsive.space(context, 82 + _pulse.value * 10),
-                    height:
-                        Responsive.space(context, 82 + _pulse.value * 10),
+                    width: Responsive.space(context, 82 + _pulse.value * 10),
+                    height: Responsive.space(context, 82 + _pulse.value * 10),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: AppColors.clay.withValues(
@@ -99,9 +95,8 @@ class _VoiceInputPanelState extends State<VoiceInputPanel>
                   width: Responsive.space(context, 72),
                   height: Responsive.space(context, 72),
                   child: IconButton(
-                    onPressed: unavailable || widget.processing
-                        ? null
-                        : widget.onTap,
+                    onPressed:
+                        unavailable || widget.processing ? null : widget.onTap,
                     style: IconButton.styleFrom(
                       backgroundColor: AppColors.chambray,
                       foregroundColor: AppColors.espresso,

@@ -437,8 +437,14 @@ abstract class AppLocalizations {
   /// Screen: Input and Translate
   ///
   /// In en, this message translates to:
-  /// **'Voice input is not available for {language}.'**
-  String voiceUnavailable(Object language);
+  /// **'Offline {language} speech recognition is not installed on this device. Install it in Android settings, then try again.'**
+  String voicePackMissing(Object language);
+
+  /// Screen: Input and Translate
+  ///
+  /// In en, this message translates to:
+  /// **'Offline ready'**
+  String get statusOfflineReady;
 
   /// Screen: Input and Translate
   ///
@@ -595,30 +601,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start Over'**
   String get startOver;
-
-  /// Screen: Input and Translate, shown when the phrasebook has no match
-  ///
-  /// In en, this message translates to:
-  /// **'No translation found for this phrase.'**
-  String get resultNotFound;
-
-  /// Screen: Input and Translate, label above suggested phrases
-  ///
-  /// In en, this message translates to:
-  /// **'Try one of these:'**
-  String get resultSuggestionsLabel;
-
-  /// Screen: Result, translation came from the phrasebook
-  ///
-  /// In en, this message translates to:
-  /// **'From phrasebook'**
-  String get resultSourcePhrasebook;
-
-  /// Screen: Result, translation came from the model
-  ///
-  /// In en, this message translates to:
-  /// **'From model'**
-  String get resultSourceModel;
 }
 
 class _AppLocalizationsDelegate
